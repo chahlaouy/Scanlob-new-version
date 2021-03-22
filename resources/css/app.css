@@ -1,0 +1,323 @@
+/*! locomotive-scroll v4.1.0 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+@font-face {
+    font-family: "ginger-regular";
+    src: url("../fonts/ginger-regular.eot");
+    src: url("../fonts/ginger-regular.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/ginger-regular.woff") format("woff"),
+        url("../fonts/ginger-regular.ttf") format("truetype"),
+        url("../fonts/ginger-regular.svg#ginger-bold") format("svg");
+    font-weight: normal;
+    font-style: normal;
+    /* src: url(../../assets/fonts/ginger-regular.woff); */
+}
+@font-face {
+    font-family: "ginger-bold";
+    src: url(../fonts/ginger-bold.woff);
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "sectra";
+    src: url(../fonts/GT-Sectra-Book.woff);
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: "ginger-regular";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #e7eeed;
+}
+
+h1,
+h2 {
+    font-family: "ginger-bold";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.animation {
+    width: 100px;
+    height: 100px;
+    -webkit-animation-name: place;
+    -webkit-animation-duration: 5s;
+    animation-name: place;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+.animation-inverse {
+    width: 100px;
+    height: 100px;
+    -webkit-animation-name: place-inverse;
+    -webkit-animation-duration: 5s;
+    animation-name: place-inverse;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes place {
+    0% {
+        top: 0px;
+    }
+    50% {
+        top: -20px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+@keyframes place-inverse {
+    0% {
+        top: -20px;
+    }
+    50% {
+        top: 0px;
+    }
+    100% {
+        top: -20px;
+    }
+}
+
+.bg-gr-primary {
+    background: rgb(65, 88, 208);
+    background: linear-gradient(
+        43deg,
+        rgba(65, 88, 208, 1) 0%,
+        rgba(200, 80, 192, 1) 50%,
+        rgba(255, 204, 112, 1) 100%
+    );
+}
+.bg-gr-secondary {
+    background: linear-gradient(to bottom, #21ecff 0, #2cc6ff 99%);
+}
+.bg-gr-dark {
+    background-color: #000000;
+    background-image: linear-gradient(0deg, #1b223a 0%, #2c3e50 74%);
+}
+.bg-gr-blue {
+    background: rgb(63, 94, 251);
+    background: radial-gradient(
+        circle,
+        rgba(63, 94, 251, 1) 0%,
+        rgba(70, 83, 252, 1) 100%
+    );
+}
+.main-color {
+    background-color: #e7eeed;
+}
+hr.thin {
+    border: 0px;
+    border-top: 0.01rem solid #9ca3af;
+    box-shadow: 0px -2px 8px #374151;
+}
+
+#card button {
+    transition: all 0.5s ease-in-out;
+    mix-blend-mode: hard-light;
+    outline: 0;
+}
+
+#card:hover button {
+    transform: scale(15);
+    /* opacity: .7; */
+}
+
+#card:hover .rounded-icon {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.rounded-icon {
+    opacity: 0;
+    will-change: transform;
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.rounded-icon-1 {
+    -webkit-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
+
+.rounded-icon-2 {
+    -webkit-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+
+.rounded-icon-3 {
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+.bg-profile {
+    background-image: url(../images/bg-profile.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.bg-about {
+    background-image: url(../images/bg-about.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 95%;
+    margin: auto;
+}
+
+.custom-file-input {
+    color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.custom-file-input::before {
+    content: "+";
+    display: block;
+    margin-top: 1.5rem;
+    text-align: center;
+    width: 100%;
+    color: #f1f1f1;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 3rem;
+}
+.custom-file-input:hover::before {
+    border-color: none;
+}
+.custom-file-input:active {
+    outline: none;
+}
+.custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+/* Google maps */
+
+/* Optional: Makes the sample page fill the window. */
+
+#description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+/* #infowindow-content .title {
+    font-weight: bold;
+}
+
+#infowindow-content {
+    display: none;
+} */
+
+/* #map #infowindow-content {
+    display: inline;
+} */
+
+.pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+}
+
+#pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+}
+
+.pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+}
+
+.pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+#pac-input {
+    /* background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px; */
+}
+
+#pac-input:focus {
+    border-color: #4d90fe;
+}
+
+#title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+}
+
+#target {
+    width: 345px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
