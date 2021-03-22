@@ -17,7 +17,8 @@ class CreateQrcodesTable extends Migration
             $table->id();
             $table->string('qrcode_string');
             $table->string('qrcode_url');
-            $table->boolean('verified');
+            $table->boolean('isVerified');
+            $table->boolean('isGenerated');
             $table->timestamps();
         });
     }

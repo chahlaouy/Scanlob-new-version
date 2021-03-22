@@ -67,6 +67,7 @@ class UserAuthController extends Controller
             $qrcode->qrcode_string = $qrcode_string;
             $qrcode->qrcode_url = '';
             $qrcode->isGenerated = false;
+            $qrcode->isVerified = false;
         }
         
         

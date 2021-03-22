@@ -6,7 +6,7 @@
 
 @section('content')
 @isset($loggedUserInfo)
-<section class="container mx-auto bg-profile flex justify-between">
+<section class="container mx-auto  flex justify-between">
     <div class="w-96 text-gray-600 text-sm" style="background: #e7eeed;">
         <ul>
             <li>
@@ -46,51 +46,114 @@
         <div class="bg-indigo-600 rounded-2xl shadow-2xl py-4 text-center text-gray-100">
             <h1 class="text-center text-4xl">Listes des Qr Code</h1>
         </div>
+
+        <div class="flex items-center">
+            <h1 class="bg-gray-900 rounded-2xl shadow-2xl py-2 mt-8 px-4 text-center text-gray-100 text-center text-xl">Qr Code Vérifié</h1>
+        </div>
         <div class="bg-white rounded-2xl shadow-2xl p-6 text-center text-gray-700 mt-8 text-left">
-            <table class="min-w-max w-full table-auto">
+            <table class="w-full table-auto">
                 <thead>
                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                         <th class="py-3 px-6 text-left">ID</th>
                         <th class="py-3 px-6 text-left">Qr Code</th>
                         <th class="py-3 px-6 text-left">Verifie</th>
-                        <th class="py-3 px-6 text-left">Utilisateur</th>
-                        <th class="py-3 px-6 text-center">Assign</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-xs font-light">
                     @foreach ($qrCodes as $qr)
+                        @if ($qr->isVerified)
+                        
                         <tr class="border-b border-gray-200 hover:bg-gray-100">
                             <td class="py-3 px-6 text-left whitespace-nowrap">
-                               {{$qr->id}} 
+                                {{$qr->id}} 
                             </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 {{$qr->qrcode_string}}
                             </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
-                                @if ($qr->verified)
-                                    Verifiée
-                                @else
-                                    Non Verifiée
-                                @endif
-                            </td>
-                            @if (false)
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                {{$qr->user}}
-                            </td>
-                            @else
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                Non Assignée
-                            </td>
-                            @endif
-                            <td class="py-3 px-6 text-center whitespace-nowrap">
-                                <a href="#">
-                                    <ion-icon name="person-add" class="text-xl text-indigo-500"></ion-icon>
-                                </a>
+                                Verifiée
                             </td>
                         </tr>
+                    @endif
                     @endforeach
                 </tbody>
-            </table> 
+            </table>
+            
+
+        </div>
+        <div class="flex items-center">
+            <h1 class="bg-gray-900 rounded-2xl shadow-2xl py-2 mt-8 px-4 text-center text-gray-100 text-center text-xl">Qr Code Non Vérifie</h1>
+        </div>
+        <div class="bg-white rounded-2xl shadow-2xl p-6 text-center text-gray-700 mt-8 text-left">
+            <table class="w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">ID</th>
+                        <th class="py-3 px-6 text-left">Qr Code</th>
+                        <th class="py-3 px-6 text-left">Verifie</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-xs font-light">
+                    @foreach ($qrCodes as $qr)
+                        @if ((!$qr->isVerified && !$qr->isGenerated))
+                            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    {{$qr->id}} 
+                                </td>
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    {{$qr->qrcode_string}}
+                                </td>
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    @if ($qr->isVerified)
+                                        Verifiée
+                                    @else
+                                        Non Verifiée
+                                    @endif
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+            
+
+        </div>
+        <div class="flex items-center">
+            <h1 class="bg-gray-900 rounded-2xl shadow-2xl py-2 mt-8 px-4 text-center text-gray-100 text-center text-xl">Qr Code Génere</h1>
+        </div>
+        <div class="bg-white rounded-2xl shadow-2xl p-6 text-center text-gray-700 mt-8 text-left">
+            <table class="w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">ID</th>
+                        <th class="py-3 px-6 text-left">Qr Code</th>
+                        <th class="py-3 px-6 text-left">Verifie</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-xs font-light">
+                    @foreach ($qrCodes as $qr)
+                        @if (($qr->isGenerated && !$q->isVerified))
+                            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    {{$qr->id}} 
+                                </td>
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    {{$qr->qrcode_string}}
+                                </td>
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    @if ($qr->isVerified)
+                                        Verifiée
+                                    @else
+                                        Non Verifiée
+                                    @endif
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+            
+
         </div>
     </div>
      
