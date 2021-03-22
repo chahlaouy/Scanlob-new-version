@@ -50,7 +50,11 @@
                             <div>
                                 <label class="block mt-4">
                                     <span class="text-gray-700">Télephone</span>
-                                    <input class="form-input block w-full border border-gray-300 my-4 rounded focus:outline-indigo-600" value="{{$loggedUserInfo->userExtraInfo->phone}}" disabled name="phone" />
+                                    <input class="form-input block w-full border border-gray-300 my-4 rounded focus:outline-indigo-600" value="
+                                        @if (isset($loggedUserInfo->userExtraInfo->phone))
+                                            {{$loggedUserInfo->userExtraInfo->phone}}
+                                        @endif
+                                    " name="phone" />
                                 </label>
                                 <span class="text-red-400">
                                     @error('phone')

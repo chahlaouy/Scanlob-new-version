@@ -6,7 +6,7 @@
 
 @section('content')
 @isset($loggedUserInfo)
-<section class="container mx-auto bg-profile">
+<section class="container mx-auto">
     <div>
         @if (Session::get('success'))
             <div class="w-full px-4 py-2 my-4 bg-green-400 rounded text-white">
@@ -18,13 +18,13 @@
         @if (isset($items))
         <div class="flex-1">
             @foreach ($items as $item)           
-                <div class="mt-5">
-                    <div class="p-4 bg-white shadow-2xl flex rounded-2xl">
+                <div class="mt-5 w-full">
+                    <div class="p-4 bg-white shadow-2xl flex rounded-2xl w-full">
                         <div class="flex mr-8">
                             <img src="{{asset('assets/images/') . '/' . $item->associatedModel->img_url}}" class="w-24 rounded-2xl object-cover  shadow-2xl" alt=""> 
                         </div>
-                        <div>
-                            <div class="flex items-center justify-between">
+                        <div class="w-full">
+                            <div class="flex items-center justify-between w-full">
                                 <div>
                                     <h1 class="text-2xl text-gray-800">
                                         {{$item->name}}
@@ -47,27 +47,6 @@
                             </div>
                         </div>
                     </div>
-    
-                    {{-- <section>
-                        <div class="flex items-center justify-center my-10">
-                    
-                            <div class="flex items-center">
-                                <div class="text-white bg-indigo-600 px-4 py-2 rounded mr-2 shadow-2xl border-gray-300 border">
-                                    1
-                                </div>
-                                <div class="bg-white text-indigo-600 px-4 py-2 rounded mr-2 shadow-2xl border-gray-300 border">
-                                    2
-                                </div>
-                                <div class="bg-white text-indigo-600 px-4 py-2 rounded mr-2 shadow-2xl border-gray-300 border">
-                                    3
-                                </div>
-                                <div class="bg-white text-indigo-600 px-4 py-2 rounded shadow-2xl border-gray-300 border">
-                                    4
-                                </div>
-                            </div>
-                    
-                        </div>
-                    </section> --}}
                 </div>
             @endforeach
         </div>

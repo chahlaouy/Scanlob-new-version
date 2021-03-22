@@ -110,7 +110,10 @@
                         </div>
                         <a href="{{route('cart.items')}}" class="bg-gray-100 px-4 py-2 rounded-lg shadow-xl text-gray-700 text-center block flex items-center">
                             <ion-icon name="cart" class="text-xl mr-2"></ion-icon>
-                            <span class="block text-sm">Panier</span>
+                            <div class="block text-sm">
+                                <span>Panier</span>
+                                <span>(0)</span>
+                            </div>
                         </a>
                     </div>
                 @else   

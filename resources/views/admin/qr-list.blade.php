@@ -132,7 +132,7 @@
                 </thead>
                 <tbody class="text-gray-600 text-xs font-light">
                     @foreach ($qrCodes as $qr)
-                        @if (($qr->isGenerated && !$q->isVerified))
+                        @if (($qr->isGenerated && !$qr->isVerified))
                             <tr class="border-b border-gray-200 hover:bg-gray-100">
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     {{$qr->id}} 

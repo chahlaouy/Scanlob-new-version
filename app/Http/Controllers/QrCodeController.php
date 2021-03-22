@@ -37,7 +37,7 @@ class QrCodeController extends Controller
         $qrcode->qrcode_string = $qrcode_string;
 
         $qrcode->qrcode_url = '';
-        $qrcode->verified = false;
+        $qrcode->isVerified = false;
         $qrcode->isGenerated = true;
 
         $status = $qrcode->save();

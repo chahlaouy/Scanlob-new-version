@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Offers;
 use App\Models\User;
 use App\Models\Command;
+use App\Models\Qrcode;
 
 class CartController extends Controller
 {
@@ -115,6 +116,13 @@ class CartController extends Controller
 
         $userID = session('loggedUserId');
         $items = \Cart::session($userID)->getContent();
+
+        $user  =  User::where('id', '=', $userID)->first();
+
+        $qrCode = Qrcode::where('id', '=', $user->qrcode_id)->first();
+
+        $qrCode->isVerified = true;
+        $qrCode->save();
 
         foreach($items as $item) {
 
