@@ -8,11 +8,12 @@
         @yield('title')
     </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos offres</title>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
 </head>
-<body>
+<body class="mx-4 md:mx-0">
 
 
 	<!-- 
@@ -35,7 +36,103 @@
     *       Section Header      *
     *****************************
 	-->
-    <header class="container mx-auto">
+    <div x-data="{ open: false }" class="md:hidden container ">
+        <div class="flex items-center justify-between py-4">
+            <h1 class="text-2xl">
+                SCANLOB
+            </h1>
+            <button @click="open = true"><ion-icon name="grid" class="text-3xl text-gray-700"></ion-icon></button>
+        </div>
+    
+        <ul
+            x-show="open"
+            @click.away="open = false"
+        >
+            <li class="py-3">
+                <a href="{{route('home')}}">
+                    Acceuil
+                </a>
+            </li>
+            <li class="py-3">
+                <a href="{{route('products')}}">
+                    Nos Offres
+                </a>
+            </li>
+            <li class="py-2">
+                <a href="{{route('about')}}">
+                    A propos
+                </a>
+            </li>
+            <li class="py-2">
+                <a href="{{route('contact')}}">
+                    Contact
+                </a>
+            </li>
+            <div class="w-full text-gray-600 text-sm py-2" style="background: #e7eeed;">
+                <div class="relative text-sm flex items-center w-full">
+                    <form action="{{route('search')}}" method="get" class="w-full">
+                        @csrf
+                        <input type="text" class="px-4 py-2 bg-gray-200 w-full rounded border border-gray-300" placeholder="Entrer qr-code" name="qrcode">
+                        <button type="submit" class="absolute -ml-12 py-2 h-full bg-indigo-600 text-white px-4 rounded-r border border-indigo-600">
+                            <ion-icon name="search" class="text-sm"></ion-icon>
+                        </button>
+                        {{-- <span class="text-red-400">
+                            @error('qrcode')
+                                {{$message}}
+                            @enderror
+                        </span> --}}
+                    </form>
+                 </div>
+             </div>
+            <div class="text-center">
+                @if (isset($loggedUserInfo))
+                    <div class="flex items-center">
+
+                        <div class="relative mr-2">
+                            <button class="bg-indigo-600 px-4 py-2 text-gray-100 rounded-lg shadow-xl text-center focus:outline-none flex items-center" onclick="myFunction()" class="dropbtn-menu-profile">
+                                <ion-icon name="person" class="text-xl mr-2"></ion-icon>
+                                <div class="flex items-center">
+                                    <p class="text-sm mr-2">{{ $loggedUserInfo->username }}</p>
+                                    <ion-icon name="chevron-down-circle-outline" class="text-lg"></ion-icon>
+                                </div>
+                            </button>
+                            <div class="hidden absolute right-0 w-64 bg-white shadow text-left rounded text-gray-700" id="dropdown-menu-profile">
+                                <ul>
+                                    <li class="px-4 py-2  hover:bg-gray-300 flex items-center">
+                                        <ion-icon name="apps" class="mr-1"></ion-icon>
+                                        <a href="{{route('user.dashboard')}}">Dashboard</a>
+                                    </li>
+                                    <li class="px-4 py-2  hover:bg-gray-300 flex items-center">
+                                        <ion-icon name="log-out" class="mr-1"></ion-icon>
+                                        <a href="{{route('user.logout')}}">Déconnexion</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a href="{{route('cart.items')}}" class="bg-gray-100 px-4 py-2 rounded-lg shadow-xl text-gray-700 text-center block flex items-center">
+                            <ion-icon name="cart" class="text-xl mr-2"></ion-icon>
+                            <div class="block text-sm">
+                                <span>Panier</span>
+                                <span class="p-1 bg-yellow-400 text-xs rounded-2xl">{{Session::get('cartItems') | 0 }}</span>
+                            </div>
+                        </a>
+                    </div>
+                @else   
+                    <a href="{{route('qr-code')}}" class="bg-indigo-600 px-4 py-2 text-gray-100 rounded-lg shadow-xl block">
+                        <ion-icon name="qr-code-outline" class="text-3xl"></ion-icon>
+                        <span class="block text-sm">premier connexion</span>
+                    </a>
+                    <a href="{{route('user.login')}}" class="bg-gray-100 px-4 py-2 rounded-lg shadow-xl text-gray-700 text-center block">
+                        <ion-icon name="person-outline" class="text-3xl"></ion-icon>
+                        <span class="block text-sm">Inscription/Connexion</span>
+                    </a>
+                @endif
+                
+                
+            </div>
+        </ul>
+    </div>
+    <header class="hidden md:block container mx-auto">
         <nav class="flex items-center justify-between py-4">
             <h1 class="text-2xl">
                 SCANLOB

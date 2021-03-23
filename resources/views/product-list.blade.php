@@ -13,7 +13,7 @@
 <section class="container mx-auto">
 
     <div class="flex items-center">
-        <div class="flex-1 p-24">
+        <div class="hidden md:block md:flex-1 md:p-24">
             <div class="bg-red-400 w-full rounded-2xl flex items-center justify-center shadow-2xl">
                 <img src="./assets/images/photographie.png" class="w-full" alt="">
             </div>
@@ -36,9 +36,10 @@
     *    body Section         *
     *****************************
 -->
-<section class="flex container mx-auto">
+<section class="md:flex container mx-auto">
     <div class="w-full">
-        <section class="grid grid-cols-3 gap-4 px-12">
+        <h1 class="md:hidden text-4xl px-2 uppercase tracking-wide leading-loose text-gray-800 my-12">nos offres</h1>
+        <section class="md:grid md:grid-cols-3 md:gap-4 md:px-12">
 
             @foreach ($offers as $offer) 
                 <div id="card" class="overflow-hidden rounded-lg">
@@ -108,7 +109,7 @@
         </section>
 
     </div>
-    <aside class="w-96  px-4 text-sm" style="background: #e7eeed;">
+    <aside class="w-96 mt-12 md:mt-0 px-4 text-sm" style="background: #e7eeed;">
         <h1 class="px-2 uppercase tracking-wide leading-loose text-gray-800">Catégories</h1>
         <ul class="w-full text-indigo-600 mt-6">
             <li class="py-2 px-2 bg-indigo-600 text-gray-100 rounded">

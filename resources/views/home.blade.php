@@ -9,10 +9,10 @@
     *       Section Header      *
     *****************************
 -->
-<div class="flex mt-28 container mx-auto">
+<div class="flex mt-8 md:mt-28 container mx-auto">
             
     <div class="flex-1">
-        <h2 class="text-sm uppercase text-indigo-600 tracking-wider leading-loose">Lorem ipsum dolor</h2>
+        <h2 class="text-sm uppercase text-indigo-600 tracking-wider leading-loose">bienvenue scanlob</h2>
         <h1 class="text-7xl text-gray-800  ">Vous n'avez plus besoin de cv ! </h1>
         <p class="max-w-lg mt-12 text-gray-500 tracking-wide leading-loose">
             Avec SCANLOB, 
@@ -31,7 +31,7 @@
             <ion-icon name="logo-youtube"></ion-icon>
         </div>
     </div>
-    <div class="flex-1 flex items-center justify-center">
+    <div class="hidden md:flex-1 md:flex md:items-center md:justify-center">
         <img src="./assets/images/illustration-1.png" class="w-full" alt="">
     </div>
 </div>
@@ -42,8 +42,8 @@
     *****************************
 -->
 <section class="container mx-auto">
-    <h1 class="text-5xl text-gray-800 my-24 text-center">Nos Service</h1>
-    <div class="flex items-center justify-center text-gray-500">
+    <h1 class="text-5xl text-gray-800 my-8 md:my-24 text-center">Nos Service</h1>
+    <div class="md:flex md:items-center md:justify-center text-gray-500">
         <div>
             <div class="flex items-center justify-center">
                 <img src="./assets/images/icons_lamp.png" class="w-32" alt="">
@@ -85,7 +85,7 @@
     *****************************
 -->
 <section class="bg-purple-600 mt-16">
-    <div class="container mx-auto py-12 flex justify-between">
+    <div class="container mx-auto py-8 md:py-12 md:flex md:justify-between">
         <div class="flex">
             <h1 class="text-4xl border-l-4 border-gray-100 text-gray-100 pl-4 max-w-md">
                 Télécharger Notre App SCANLOB
@@ -114,7 +114,7 @@
     </div>
 </section>
 
-<section>
+<section class="hidden md:block">
     <div class="flex -mt-40">
         <div class="flex-1"></div>
         <div class="flex-1 flex items-center">
@@ -129,9 +129,9 @@
 -->
 <section class="container mx-auto">
     <h1 class="text-5xl text-gray-800 my-24 text-center">Nos feature</h1>
-    <div class="flex items-center justify-around text-center">
+    <div class="md:flex md:items-center md:justify-around text-center">
 
-        <div class="p-4 bg-white shadow-2xl rounded-2xl h-52 w-52">
+        <div class="p-4 bg-white shadow-2xl rounded-2xl h-52 w-full md:w-52 my-8 md:my-0">
             <ion-icon name="diamond" class="text-6xl text-indigo-600"></ion-icon>
             <h1 class="text-xl text-indigo-600">Accessoires</h1>
             <p class="text-sm text-gray-500 tracking-wide leading-loose">
@@ -139,7 +139,7 @@
             </p>
         </div>
         
-        <div class="p-4 bg-indigo-600 shadow-2xl rounded-2xl h-52 w-52">
+        <div class="p-4 bg-indigo-600 shadow-2xl rounded-2xl h-52 md:w-52 my-8 md:my-0">
             <ion-icon name="notifications" class="text-6xl text-gray-100"></ion-icon>
             <h1 class="text-xl text-gray-100">Notifications</h1>
             <p class="text-sm text-indigo-200 tracking-wide leading-loose">
@@ -147,7 +147,7 @@
             </p>
         </div>
 
-        <div class="p-4 bg-white shadow-2xl rounded-2xl h-52 w-52">
+        <div class="p-4 bg-white shadow-2xl rounded-2xl h-52 md:w-52 my-8 md:my-0">
             <ion-icon name="git-network" class="text-6xl text-indigo-600"></ion-icon>
             <h1 class="text-xl text-indigo-600">diversité</h1>
             <p class="text-sm text-gray-500 tracking-wide leading-loose">
@@ -163,9 +163,9 @@
     *****************************
 -->
 <section class="container mx-auto">
-    <h1 class="text-5xl text-gray-800 my-24 text-center">Nos derniére offre </h1>
+    <h1 class="text-5xl text-gray-800 my-8 md:my-24 text-center">Nos derniére offre </h1>
 
-    <section class="grid grid-cols-3 gap-8 px-12">
+    <section class="md:grid md:grid-cols-3 md:gap-8 px-12">
 
         @foreach ($offers as $offer) 
             <div id="card" class="overflow-hidden rounded-lg">
