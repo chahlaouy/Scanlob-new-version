@@ -112,7 +112,7 @@
                             <ion-icon name="cart" class="text-xl mr-2"></ion-icon>
                             <div class="block text-sm">
                                 <span>Panier</span>
-                                <span>(0)</span>
+                                <span class="p-1 bg-yellow-400 text-xs rounded-2xl">{{Session::get('cartItems') | 0 }}</span>
                             </div>
                         </a>
                     </div>

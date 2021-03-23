@@ -15,8 +15,8 @@
         @endif
     </div>
     <div class="bg-gray-800 bg-opacity-50 rounded-3xl p-12 w-full flex">
-        @if (isset($items))
-        <div class="flex-1">
+        @if(count($items)>0)
+            <div class="flex-1">
             @foreach ($items as $item)           
                 <div class="mt-5 w-full">
                     <div class="p-4 bg-white shadow-2xl flex rounded-2xl w-full">
@@ -85,7 +85,7 @@
         </div>
             
         @else
-            <h1 class="text-gray-700 text-4xl">Sorry No Cart is empty</h1>
+            <h1 class="text-gray-700 text-4xl">Sorry Cart is empty</h1>
         @endif
     </div>
      

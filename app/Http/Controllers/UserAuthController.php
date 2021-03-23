@@ -56,7 +56,7 @@ class UserAuthController extends Controller
 
         // if form validated successfully
         
-        if(session()->has('qrcode')){
+        if(session()->has('qrcode')){ 
             $qrcode = Qrcode::where('qrcode_string', '=', session('qrcode'))->first();
             session()->pull('qrcode');
             $qrcode->verified = true;
@@ -145,9 +145,61 @@ class UserAuthController extends Controller
         if(session()->has('loggedUserId')){
             session()->pull('loggedUserId');
             return redirect('connexion');
+            session()->pull('cartItems');
         }
     }
 
+    function redirectToProvider(){
+        return \Socialite::driver('google')->redirect();
+    }
+    
+    function handleProviderCallback(){
 
+        $user = \Socialite::driver('google')->user();
+
+        $this->registerOrLoginUser($user);
+
+        // Return home after login
+        return redirect()->route('home');
+    }
+    protected function registerOrLoginUser($data)
+    {
+
+        dd($data);
+        $user = User::where('email', '=', $data->email)->first();
+        if (!$user) {
+
+            if(session()->has('qrcode')){ 
+                $qrcode = Qrcode::where('qrcode_string', '=', session('qrcode'))->first();
+                session()->pull('qrcode');
+                $qrcode->verified = true;
+            }else{
+    
+                $qrcode = new Qrcode;
+                $qrcode_string = rand(11111, 99999);
+                $qrcode->qrcode_string = $qrcode_string;
+                $qrcode->qrcode_url = '';
+                $qrcode->isGenerated = false;
+                $qrcode->isVerified = false;
+            }
+
+            $query2 = $qrcode->save();
+
+            $user = new User();
+            $user->username = $data->name;
+            $user->email = $data->email;
+            $user->avatar = $data->avatar;
+            $query = $user->save();
+
+            if ($query && $query2){
+
+                $request->session()->put('loggedUserId', $user->id);
+                // return back()->with('success', 'Vous avez bien été enregistré');
+                return redirect('/dashboard');
+            } else {
+                return back()->with('fail', "désolé, quelque chose s'est mal passé, essayez plus tard");
+            }
+        }
+    }
     
 }

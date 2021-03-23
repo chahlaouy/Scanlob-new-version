@@ -30,6 +30,9 @@ class CartController extends Controller
                 'attributes' => array(),
                 'associatedModel' => $offer
             ));
+            $cartItems = session()->get('cartItems') + 1;
+            session()->pull('cartItems');
+            session()->put('cartItems', $cartItems);
             return back()->with('success', "Offre Ajouter avec success");
 
         } else {
@@ -42,25 +45,37 @@ class CartController extends Controller
 
         $userID = session('loggedUserId');
         $items = \Cart::session($userID)->getContent();
+        $loggedUserInfo  = User::where('id', '=', $userID)->first();
+        if($loggedUserInfo){
+            $data   =   [
+                'loggedUserInfo' => $loggedUserInfo
+            ];
+            if($items){
 
-        $total = 0;
-
-        // dd($items);
-        foreach($items as $item) {
-            $total = $total + (intval($item->quantity) * $item->price);
+                $total = 0;
+                foreach($items as $item) {
+                    
+                    $total = $total + (intval($item->quantity) * $item->price);
+                }
+    
+                $data   =   [
+                    'loggedUserInfo' => $loggedUserInfo,
+                    'items' => $items,
+                    'total' => $total
+                ];
+            }
+            return view('cart-items', $data);
+        }else{
+            return redirect("/");
         }
-
-        $data   =   [
-            'loggedUserInfo'  =>  User::where('id', '=', $userID)->first(),
-            'items' => $items,
-            'total' => $total
-        ];
-        return view('cart-items',  $data);
     }
     public function deleteCart($id){
 
         $userID = session('loggedUserId');
         \Cart::session($userID)->remove($id);
+        $cartItems = session()->get('cartItems') - 1;
+        session()->pull('cartItems');
+        session()->put('cartItems', $cartItems);
         $items = \Cart::session($userID)->getContent();
         $data   =   [
             'loggedUserInfo'  =>  User::where('id', '=', $userID)->first(),

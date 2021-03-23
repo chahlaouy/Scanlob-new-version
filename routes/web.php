@@ -38,8 +38,8 @@ Route::get('/apropos', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/term', [HomeController::class, 'term'])->name('term');
 
-Route::get('/redirect', [UserAuthController::class, 'redirectToProvider']);
-Route::get('/callback', [UserAuthController::class, 'handleProviderCallback']);
+Route::get('/redirect', [UserAuthController::class, 'redirectToProvider'])->name('login.google');
+Route::get('/login/google/callback', [UserAuthController::class, 'handleProviderCallback']);
 
 // User Routes
 

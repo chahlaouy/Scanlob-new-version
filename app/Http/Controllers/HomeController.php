@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    function home(){
-        
+    function home(Request $request){ 
+
+        // session()->put('cartItems', 0);
         $offers = DB::table('offers')->get();
 
         if(session()->has('loggedUserId')){
