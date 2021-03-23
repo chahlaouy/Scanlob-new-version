@@ -66,7 +66,7 @@
                     <h1 class="text-center">Ou Connectez avec</h1>
                     <div class="flex items-center justify-around mt-4">
                         <div class="flex justify-center items-center w-10 h-10 bg-indigo-600 shadow-2xl rounded-full">
-                            <a href="#">
+                            <a href="{{ route('login.facebook') }}">
                                 <ion-icon name="logo-facebook" class="text-3xl text-gray-100"></ion-icon>
                             </a>
                         </div>

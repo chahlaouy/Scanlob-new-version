@@ -148,10 +148,12 @@ class UserAuthController extends Controller
             session()->pull('cartItems');
         }
     }
-
+    /** login google */
     function redirectToProvider(){
         return \Socialite::driver('google')->redirect();
     }
+    
+
     
     function handleProviderCallback(){
 
@@ -163,6 +165,64 @@ class UserAuthController extends Controller
         return redirect()->route('home');
     }
     protected function registerOrLoginUser($data)
+    {
+
+        $user = User::where('email', '=', $data->email)->first();
+        if (!$user) {
+
+            if(session()->has('qrcode')){ 
+                dd('session has qr');
+                $qrcode = Qrcode::where('qrcode_string', '=', session('qrcode'))->first();
+                session()->pull('qrcode');
+                $qrcode->verified = true;
+            }else{
+                // dd('session does not have qr');
+                $qrcode = new Qrcode();
+                $qrcode_string = rand(11111, 99999);
+                $qrcode->qrcode_string = $qrcode_string;
+                $qrcode->qrcode_url = '';
+                $qrcode->isGenerated = false;
+                $qrcode->isVerified = false;
+            }
+
+            $query2 = $qrcode->save();
+
+            $user = new User();
+            $user->username = $data->name;
+            $user->email = $data->email;
+            $user->password = "";
+            $user->qrcode_id = $qrcode->id;
+            // $user->avatar = $data->avatar;
+            $query = $user->save();
+
+            if ($query && $query2){
+
+                session()->put('loggedUserId', $user->id);
+                // return back()->with('success', 'Vous avez bien été enregistré');
+                return redirect('/dashboard');
+            } else {
+                return back()->with('fail', "désolé, quelque chose s'est mal passé, essayez plus tard");
+            }
+        } else{
+            session()->put('loggedUserId', $user->id);
+            return redirect('/dashboard');
+        }
+    }
+    /** login facebook */
+    function redirectToProviderFacebook(){
+        return \Socialite::driver('facebook')->redirect();
+    }
+
+    function handleProviderCallbackFaceBook(){
+
+        $user = \Socialite::driver('google')->user();
+
+        $this->registerOrLoginUserFacebook($user);
+
+        // Return home after login
+        return redirect()->route('home');
+    }
+    protected function registerOrLoginUserFacebook($data)
     {
 
         $user = User::where('email', '=', $data->email)->first();

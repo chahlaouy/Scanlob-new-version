@@ -38,8 +38,12 @@ Route::get('/apropos', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/term', [HomeController::class, 'term'])->name('term');
 
+/** google login */
 Route::get('/redirect', [UserAuthController::class, 'redirectToProvider'])->name('login.google');
 Route::get('/login/google/callback', [UserAuthController::class, 'handleProviderCallback']);
+/** facebook login */
+Route::get('/redirect/facebook', [UserAuthController::class, 'redirectToProviderFaceBook'])->name('login.facebook');
+Route::get('/login/facebook/callback', [UserAuthController::class, 'handleProviderCallbackFacebook']);
 
 // User Routes
 
