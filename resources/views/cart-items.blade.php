@@ -14,7 +14,7 @@
             </div>
         @endif
     </div>
-    <div class="bg-gray-800 bg-opacity-50 rounded-3xl p-12 w-full flex">
+    <div class="bg-gray-800 bg-opacity-50 rounded-3xl p-2 md:p-12 w-full md:flex">
         @if(count($items)>0)
             <div class="flex-1">
             @foreach ($items as $item)           
@@ -50,7 +50,7 @@
                 </div>
             @endforeach
         </div>
-        <div class="flex-1 px-6">
+        <div class="flex-1 md:px-6">
             
             <div class="bg-white shadow-2xl rounded-2xl mt-5 p-8">
                 <h1 class="text-3xl mb-16">Liste Des Produits</h1>

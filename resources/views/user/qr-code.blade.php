@@ -6,7 +6,7 @@
 
 @section('content')
 @isset($loggedUserInfo)
-<section class="container mx-auto bg-profile flex justify-between">
+<section class="container mx-auto bg-profile md:flex md:justify-between">
     <div class="w-96 text-gray-600 text-sm" style="background: #e7eeed;">
         <ul>
             <li>
@@ -54,7 +54,7 @@
             </li>
         </ul>
     </div>  
-    <div class="bg-gray-800 bg-opacity-50 rounded-3xl p-12 w-full">
+    <div class="bg-gray-800 bg-opacity-50 rounded-3xl md:p-12 w-full">
         @if (Session::get('success'))
             <div class="bg-green-300 w-full py-4 text-center rounded my-4">
                 {{Session::get('success')}}
@@ -66,14 +66,14 @@
             </div>
         @endif
         <div class="">
-            <div class="flex-1 p-8">
+            <div class="p-8">
                 <div class="bg-indigo-600 rounded-2xl shadow-2xl p-12 text-center text-gray-100">
-                    <a href="{{route('admin.qr-code-generate')}}" class="p-12" >
+                    <a href="{{route('admin.qr-code-generate')}}" class="p-4 md:p-12" >
                         Mon Qr code
                     </a>
                 </div>
             </div>
-            <div class="flex-1 p-8">
+            <div class="p-8">
                 <div class="bg-white rounded-2xl shadow-2xl p-12 text-center text-gray-700">
 
                     <div class="">

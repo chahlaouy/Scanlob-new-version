@@ -24,8 +24,8 @@
         @endif
     </div>
     
-    <div class="flex">
-        <div class="flex-1 px-24 py-8">
+    <div class="md:flex">
+        <div class="flex-1 px-8 md:px-24 py-8">
             <div id="card" class="overflow-hidden rounded-lg">
                 <div class="w-full relative z-0">
                     <div class="bg-gray-900 bg-opacity-10 w-full h-full absolute z-10 rounded-lg overflow-hidden">

@@ -8,12 +8,12 @@
         @yield('title')
     </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nos offres</title>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 </head>
 <body> 
-    <section class="h-screen w-full bg-indigo-600 flex items-center justify-center p-8">
+    <section class="md:h-screen w-full bg-indigo-600 flex items-center justify-center p-8">
         <div class="w-full bg-white rounded-2xl shadow-2xl p-12 leading-loose tracking-wide text-gray-700 bg-about">
             <div class="flex items-center">
                 <div class="flex-1">
@@ -23,9 +23,9 @@
                 <div class="flex-1"></div>
 
             </div>
-            <div class="flex items-center justify-around mt-32">
+            <div class="md:flex md:items-center md:justify-around mt-8 md:mt-32">
 
-                <div class="flex items-center justify-center bg-gray-200 rounded-xl shadow-2xl text-center w-64 p-4">
+                <div class="flex items-center justify-center bg-gray-200 rounded-xl shadow-2xl text-center w-64 p-4 my-4 md:my-0">
 
                     <div class="">
                         <ion-icon name="aperture-outline" class="text-5xl text-purple-600"></ion-icon>
@@ -36,7 +36,7 @@
 
 
                 </div>
-                <div class="flex items-center justify-center bg-gray-200 rounded-xl shadow-2xl text-center w-64 p-4">
+                <div class="flex items-center justify-center bg-gray-200 rounded-xl shadow-2xl text-center w-64 p-4 my-4 md:my-0">
 
                     <div class="">
                         <ion-icon name="bag-handle-outline" class="text-5xl text-purple-600"></ion-icon>
@@ -47,7 +47,7 @@
 
 
                 </div>
-                <div class="flex items-center justify-center bg-gray-200 rounded-xl shadow-2xl text-center w-64 p-4">
+                <div class="flex items-center justify-center bg-gray-200 rounded-xl shadow-2xl text-center w-64 p-4 my-4 md:my-0">
 
                     <div class="">
                         <ion-icon name="browsers-outline" class="text-5xl text-purple-600"></ion-icon>

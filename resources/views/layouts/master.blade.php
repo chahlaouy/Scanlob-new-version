@@ -92,11 +92,14 @@
                             <button class="bg-indigo-600 px-4 py-2 text-gray-100 rounded-lg shadow-xl text-center focus:outline-none flex items-center" onclick="myFunction()" class="dropbtn-menu-profile">
                                 <ion-icon name="person" class="text-xl mr-2"></ion-icon>
                                 <div class="flex items-center">
-                                    <p class="text-sm mr-2">{{ $loggedUserInfo->username }}</p>
+                                    <p class="text-sm mr-2">
+                                        <a href="{{route('user.dashboard')}}">
+                                            {{ $loggedUserInfo->username }}</p>
+                                        </a>
                                     <ion-icon name="chevron-down-circle-outline" class="text-lg"></ion-icon>
                                 </div>
                             </button>
-                            <div class="hidden absolute right-0 w-64 bg-white shadow text-left rounded text-gray-700" id="dropdown-menu-profile">
+                            {{-- <div class="hidden absolute right-0 w-64 bg-white shadow text-left rounded text-gray-700">
                                 <ul>
                                     <li class="px-4 py-2  hover:bg-gray-300 flex items-center">
                                         <ion-icon name="apps" class="mr-1"></ion-icon>
@@ -107,7 +110,7 @@
                                         <a href="{{route('user.logout')}}">Déconnexion</a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                         <a href="{{route('cart.items')}}" class="bg-gray-100 px-4 py-2 rounded-lg shadow-xl text-gray-700 text-center block flex items-center">
                             <ion-icon name="cart" class="text-xl mr-2"></ion-icon>

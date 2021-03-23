@@ -8,7 +8,7 @@
         @yield('title')
     </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chekout page</title>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 </head>
@@ -25,7 +25,7 @@
         <section class="max-w-6xl mx-auto text-gray-700 bg-white shadow-2xl rounded-2xl p-8 mt-4">
             <form action="{{route('checkout.credit-card')}}"  method="post" class=" text-xs font-bold" id="payment-form">
                 @csrf
-                <div class="flex">
+                <div class="md:flex">
                     <div class="flex-1 p-4">
                         
                         <h2 class="text-2xl capitalize my-4 text-gray-900">coordonnées</h2>

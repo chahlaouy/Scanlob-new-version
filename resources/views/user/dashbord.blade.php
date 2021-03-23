@@ -6,7 +6,7 @@
 
 @section('content')
 @isset($loggedUserInfo)
-<section class="container mx-auto bg-profile flex justify-between">
+<section class="container mx-auto bg-profile md:flex md:justify-between">
     <div class="w-96 text-gray-600 text-sm" style="background: #e7eeed;">
         <ul>
             <li>
@@ -54,7 +54,7 @@
             </li>
         </ul>
     </div>  
-    <div class="bg-gray-800 bg-opacity-5 rounded-3xl p-12 w-full">
+    <div class="bg-gray-800 bg-opacity-5 rounded-3xl p-1 md:p-12 w-full">
         
         <div class="bg-white rounded-2xl shadow-2xl p-8">
             <div class="flex items-center justify-between">

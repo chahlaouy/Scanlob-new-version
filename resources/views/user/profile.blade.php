@@ -6,7 +6,7 @@
 
 @section('content')
 @isset($loggedUserInfo)
-<section class="container mx-auto bg-profile flex justify-between">
+<section class="container mx-auto bg-profile md:flex md:justify-between">
     <div class="w-96 text-gray-600 text-sm" style="background: #e7eeed;">
         <ul>
             <li>
@@ -54,7 +54,7 @@
             </li>
         </ul>
     </div>  
-    <div class="bg-gray-800 bg-opacity-5 rounded-3xl p-12 w-full rounded">
+    <div class="bg-gray-800 bg-opacity-5 rounded-3xl  md:p-12 w-full rounded">
 
         @if (Session::get('success'))
             <div class="bg-green-300 w-full py-4 text-center rounded my-4">
@@ -71,8 +71,8 @@
             <div class="flex items-center justify-end my-4">
                 <button type="submit" class="px-4 py-2 bg-indigo-600 text-gray-100 focus:outline-none rounded-xl">Enregistrer Modification</button>
             </div>
-            <div class="flex">
-                <div class="bg-white rounded-2xl shadow-2xl w-96 mr-6 h-auto">
+            <div class="md:flex">
+                <div class="bg-white rounded-2xl shadow-2xl w-full md:w-96 md:mr-6 h-auto">
                     <div class="flex p-4 relative z-0">
                         <img src="{{asset('assets/images/profile.png')}}" class="h-96 w-full rounded-2xl object-cover" alt="">
                         {{-- <div class="absolute bottom-0 right-0 z-10 w-24 h-24 rounded-full bg-indigo-600 flex items-center justify-center">
