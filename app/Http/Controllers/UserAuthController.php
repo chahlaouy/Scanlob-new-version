@@ -54,8 +54,8 @@ class UserAuthController extends Controller
         $request->validate([
             'username'  =>  'required',
             'email'  =>  'required | email | unique:users',
-            'password'  =>  'required | min:4 | max:12',
-            'confirm-password'  =>  'required | min:4 | max:12',
+            'password'  =>  'required | min:4 | max:12 | confirmed',
+            'password_confirmation'  =>  'required',
         ]);
 
         // if form validated successfully
@@ -293,7 +293,7 @@ class UserAuthController extends Controller
             $message->subject('Reset Password Notification');
         });
 
-        return back()->with('message', 'We have e-mailed your password reset link!');
+        return back()->with('message', 'Nous avons envoyé votre lien de réinitialisation de mot de passe par e-mail!');
     }
 
 
@@ -307,7 +307,6 @@ class UserAuthController extends Controller
         $request->validate([
             'email' => 'required|email|exists:users',
             'password' => 'required|string|min:4',
-            // 'password_confirmation' => 'required',
     
         ]);
     
@@ -316,14 +315,14 @@ class UserAuthController extends Controller
                             ->first();
     
         if(!$updatePassword)
-            return back()->with('error', 'Invalid token!');
+            return back()->with('error', 'token non validée!');
     
         $user = User::where('email', $request->email)
                     ->update(['password' => Hash::make($request->password)]);
     
         DB::table('password_resets')->where(['email'=> $request->email])->delete();
     
-        return redirect('/connexion')->with('message', 'Your password has been changed!');
+        return redirect('/connexion')->with('message', 'Votre mot de passe a été changé!');
    
     }
 

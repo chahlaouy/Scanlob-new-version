@@ -55,9 +55,9 @@
                             {{$message}}
                         @enderror
                     </span>
-                    <input type="password" class="w-full px-4 py-2 my-4 bg-red-200 rounded outline-white" placeholder="Confirmer mot de passe" name="confirm-password">
+                    <input type="password" class="w-full px-4 py-2 my-4 bg-red-200 rounded outline-white" placeholder="Confirmer mot de passe" name="password_confirmation">
                     <span class="block text-red-400">
-                        @error('confirm-password')
+                        @error('password_confirmation')
                             {{$message}}
                         @enderror
                     </span>

@@ -16,7 +16,7 @@
     *****************************
     -->
     <section class="flex items-center justify-center h-screen w-full text-gray-600">
-        <div class="bg-white shadow-2xl rounded-xl w-96 h-96 flex items-center justify-center p-8">
+        <div class="bg-white shadow-2xl rounded-xl w-96 flex items-center justify-center p-8">
             <form action="{{route ('user.check')}}" method="POST">
                 @csrf
                 <div>
@@ -25,6 +25,11 @@
                         @if (Session::get('fail'))
                             <div class="w-full px-4 py-2 my-4 bg-red-400 rounded text-white">
                                 {{Session::get('fail')}}
+                            </div>
+                        @endif
+                        @if (Session::get('message'))
+                            <div class="w-full px-4 py-2 my-4 bg-green-400 rounded text-white">
+                                {{Session::get('message')}}
                             </div>
                         @endif
                     </div>
