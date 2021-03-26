@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::prefix('/api/pin')->group(function () {
+//     Route::post('pin', [HomeController::class, 'pin']);
+// });
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    
+    // return $request->user();
+    return "done";
 });
+Route::post('/pin', [HomeController::class, 'pin']);

@@ -10,13 +10,22 @@ use App\Models\UserExtraInfo;
 
 use Illuminate\Support\Facades\DB;
 
+use App\Models\Location;
+
 class UserController extends Controller
 {
     function index(){
-
+        $user = User::where('id', '=', session('loggedUserId'))->first();
+        $locts = DB::table('locations')->where('profile_id', '=', $user->id)->get();
+        
+        $lat = 46.2276;
+        $lng = 2.2137;
         $data   =   [
             'loggedUserInfo'  =>  User::where('id', '=', session('loggedUserId'))->first(),
-            'user'  =>  User::where('id', '=', session('loggedUserId'))->first(),
+            'user'  =>  $user,
+            'lat' => $lat,
+            'lng' => $lng,
+            'locts' => $locts
 
         ];
 

@@ -52,9 +52,9 @@ $app->singleton(
 |
 */
 
-// $app->bind('path.public', function() {
-//     return realpath(__DIR__.'/../../www');
-// });
+$app->bind('path.public', function() {
+    return realpath(__DIR__.'/../../www');
+});
 
 
 return $app;

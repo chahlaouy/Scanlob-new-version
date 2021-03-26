@@ -136,30 +136,31 @@ class HomeController extends Controller
         /** get user */
         $user = User::where("id", "=", $id)->first();
 
-
         /** user not empty */
         if($user){
 
             /** logged user */
             if(session()->has('loggedUserId')){
 
-                $lat = 46.2276;
-                $lng = 2.2137;
-
-                $loggeduser   =   User::where('id', '=', session('loggedUserId'))->first();
+                $loggeduser  =  User::where('id', '=', session('loggedUserId'))->first();
                 $data = [
                     'user' => $user,
                     'loggedUserInfo'  =>  $loggeduser,
-                    'lat' => $lat,
-                    'lng' => $lng
                 ];
                 return view('profile', $data);
 
             }
             /** no logged user */
             else{
+                
+                $lat = 46.2276;
+                $lng = 2.2137;
+
                 $data = [
                     'user' => $user,
+                    'lat' => $lat,
+                    'lng' => $lng,
+                    'locations' => $locations
                 ];
                 return view('profile', $data);
             }
@@ -183,6 +184,21 @@ class HomeController extends Controller
     function about(){
 
         return view('about');
+    }
+
+    function pin(Request $request){
+
+        $location = new Location();
+
+        $location->lat = $request->lat;
+        $location->lng = $request->lng;
+        $location->profile_id = $request->profileId;
+        $location->user_id = $request->username;
+
+        $location->save();
+
+        return 'success';
+
     }
 
 }

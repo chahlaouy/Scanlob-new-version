@@ -10,42 +10,71 @@
 
 @section('content')
 @isset($user)
+    <!-- Map Modal -->
+    <div id="mapModel" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="w-full p-4">
+                <div class="bg-white rounded-2xl shadow-2xl p-8 mt-8">
+                    <h1 class="tracking-wide leading-loose capitalize tex-3xl">Addresse</h1>
+                    <span class="text-xs">Veuillez Votre addresse</span>
+                    <hr class="mb-4">
+                    <span class="text-red-400">
+                        @error('address')
+                            {{$message}}
+                        @enderror
+                    </span>
+                    <input
+                    name="address"
+                    id="pac-input"
+                    class="controls py-2 px-4 border border-indigo-600 w-full rounded"
+                    type="text"
+                    placeholder="Entrer Votre addresse"
+                    />
+                    <div id="map" class="w-full h-96"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <!-- The Modal -->
     <div id="myModal" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="w-full p-4">
-            <form action="/ajouter-avis/{{$user->id}}" method="POST">
-                @csrf
-                <h1 class="text-center text-gray-700 text-3xl">
-                    Votre Avis
-                </h1>
-                <label class="block mt-4">
-                    <span class="text-gray-700">Titre</span>
-                    <input class="form-input block w-full border-2 border-gray-300 my-4 rounded focus:outline-indigo-600" placeholder="Placer le titre de votre message ici" name="title">
-                </label>
-                <span class="text-red-400">
-                    @error('title')
-                        {{$message}}
-                    @enderror
-                </span>
-                <label class="block mt-4">
-                    <span class="text-gray-700">Message</span>
-                    <textarea class="form-input block w-full border-2 border-gray-300 my-4 rounded focus:outline-indigo-600" placeholder="votre message" name="body"></textarea>
-                </label>
-                <span class="text-red-400">
-                    @error('body')
-                        {{$message}}
-                    @enderror
-                </span>
-                <button class="bg-indigo-600 px-4 py-2 rounded text-white block" type="submit">
-                    Envoyer
-                </button>
-            </form>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="w-full p-4">
+                <form action="/ajouter-avis/{{$user->id}}" method="POST">
+                    @csrf
+                    <h1 class="text-center text-gray-700 text-3xl">
+                        Votre Avis
+                    </h1>
+                    <label class="block mt-4">
+                        <span class="text-gray-700">Titre</span>
+                        <input class="form-input block w-full border-2 border-gray-300 my-4 rounded focus:outline-indigo-600" placeholder="Placer le titre de votre message ici" name="title">
+                    </label>
+                    <span class="text-red-400">
+                        @error('title')
+                            {{$message}}
+                        @enderror
+                    </span>
+                    <label class="block mt-4">
+                        <span class="text-gray-700">Message</span>
+                        <textarea class="form-input block w-full border-2 border-gray-300 my-4 rounded focus:outline-indigo-600" placeholder="votre message" name="body"></textarea>
+                    </label>
+                    <span class="text-red-400">
+                        @error('body')
+                            {{$message}}
+                        @enderror
+                    </span>
+                    <button class="bg-indigo-600 px-4 py-2 rounded text-white block" type="submit">
+                        Envoyer
+                    </button>
+                </form>
+            </div>
         </div>
-    </div>
 
     </div>
     <section class="container mx-auto bg-profile md:flex md:justify-between rounded-3xl">
@@ -163,12 +192,12 @@
                             </div>
                         </div>
                         
-                        <div class="hidden md:flex mt-4">
+                        <div class="md:flex mt-4">
                             <button class="px-4 py-2 bg-indigo-600 rounded-lg shadow-xl text-white mt-4 flex items-center mr-4">
                                 <ion-icon name="flash-outline" class="mr-2 text-lg"></ion-icon>
                                 <span>Poke</span>
                             </button>
-                            <button class="px-4 py-2 bg-gray rounded-lg shadow-xl text-indigo-600 mt-4 flex items-center">
+                            <button class="px-4 py-2 bg-gray rounded-lg shadow-xl text-indigo-600 mt-4 flex items-center" id="location-button">
                                 <ion-icon name="locate-outline" class="mr-2 text-xl"></ion-icon>
                                 <span>Pin</span>
                             </button>
@@ -272,49 +301,149 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-K9j_V0TfxcRVIamBVipT8kiyFsk2cgE&callback=initMap">
     </script>
 
-
     <script defer>
+        window.initMap =  function(){
 
-        initMap =  function(){
-            var image = new google.maps.MarkerImage("{{ asset('assets/images/marker.png') }}", null, null, null, new google.maps.Size(52,52));
-            const map = new google.maps.Map(document.getElementById("map_profile"), {
-                zoom: 6,
-                center: { 
-                    lat: {{$lat}}, 
-                    lng: {{$lng}} 
-                    },
-            });
-            function addMarker(location){
-                var marker = new google.maps.Marker({
-                position: { 
-                    lat: location.lat, 
-                    lng:location.lng,
-                },
-                icon: image,
-                title: "pined By!",
-                map: map
-                });
-
-
-                marker.addListener('mouseover', () => {
-                    infoWindow.open(map, marker)
-                })
-                const infoWindow = new google.maps.InfoWindow({
-                    content : `
-                            <div class="w-96 h-96 p-2">
-                                <img src="{{asset('assets/images/profile.png')}}" alt="" class="w-full h-72 bg-cover bg-center object-cover">
-                                <div class="text-center">
-                                    <h1 class="my-4 ">title goes here</h1>
-                                    <h1 class="my-4">email goes here</h1>
-                                    <a href="#">see profile</a>
-                                </div>
-                            </div>
-                    `
-                })
-            }
-            addMarker({ lat: {{$lat}}, lng: {{$lng}} })
+        const myLatLng = { lat: -25.363, lng: 131.044 };
+        const map = new google.maps.Map(document.getElementById("map_profile"), {
+            zoom: 4,
+            center: myLatLng,
+        });
+        new google.maps.Marker({
+            position: myLatLng,
+            map,
+            title: "Hello World!",
+        });
         }
+        window.initAutocomplete = function () {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -33.8688, lng: 151.2195 },
+            zoom: 13,
+            mapTypeId: "roadmap",
+        });
+        // Create the search box and link it to the UI element.
+        const input = document.getElementById("pac-input");
+        const searchBox = new google.maps.places.SearchBox(input);
+        // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener("bounds_changed", () => {
+            searchBox.setBounds(map.getBounds());
+        });
+        let markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener("places_changed", () => {
+            const places = searchBox.getPlaces();
 
+            if (places.length == 0) {
+                return;
+            }
+            // Clear out the old markers.
+            markers.forEach((marker) => {
+                marker.setMap(null);
+            });
+            markers = [];
+            // For each place, get the icon, name and location.
+            const bounds = new google.maps.LatLngBounds();
+            places.forEach((place) => {
+                if (!place.geometry || !place.geometry.location) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+                const icon = {
+                    url: place.icon,
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(25, 25),
+                };
+                // Create a marker for each place.
+                markers.push(
+                    new google.maps.Marker({
+                        map,
+                        icon,
+                        title: place.name,
+                        position: place.geometry.location,
+                    })
+                );
+
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
+    }
+        infoWindow = new google.maps.InfoWindow();
+            const locationButton = document.getElementById('location-button')
+            locationButton.addEventListener("click", () => {
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                    const pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    console.log(pos)
+    
+                    /*  send ajax request to back end here*/
+    
+                    window.$.ajax( {
+                            type: 'POST',
+                            header:{
+                                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "/api/pin",
+                            data:{
+                                _token: "{{ csrf_token() }}",
+                                dataType: 'json', 
+                                contentType:'application/json', 
+                                lat: pos.lat,
+                                lng: pos.lng,
+                                profileId: {{ $user->id }},
+                                @if (isset($loggedUserInfo))
+                                    username: "{{ $loggedUserInfo->username }}",
+                                @else
+                                    username: "unknown"
+                                @endif
+                            },
+                        
+                        })
+                            .done((data) => {
+                                console.log(data)
+                            })
+                            .fail((data) => {
+                                
+                            });
+    
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent("Emplacement trouvé.");
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                    },
+                    () => {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                    }
+                );
+                } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+                }
+            });
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+                infoWindow.setContent(
+                    browserHasGeolocation
+                    ? "Error: The Geolocation service failed."
+                    : "Error: Your browser doesn't support geolocation."
+                );
+                infoWindow.open(map);
+            }
     </script>
+    
 @endisset
 @endsection

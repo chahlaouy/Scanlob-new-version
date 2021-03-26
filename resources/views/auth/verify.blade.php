@@ -17,7 +17,10 @@
     -->
     <section class="flex items-center justify-center h-screen w-full text-gray-600">
         <div class="bg-white shadow-2xl rounded-xl w-96 h-96 flex items-center justify-center p-8">
-            <a href="http://127.0.0.1:8000/reset-password/{{$token}}">Click Here</a>.
+            <div>
+                <h1>Réinitialiser votre mot de passe</h1>
+            </div>
+            <a href="https://scanlob.com/reset-password/{{$token}}">Cliquez ici</a>.
         </div>
     </section>
     <script src="./assets/js/app.js"></script>
