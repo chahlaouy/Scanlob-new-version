@@ -15,7 +15,9 @@ class UserController extends Controller
     function index(){
 
         $data   =   [
-            'loggedUserInfo'  =>  User::where('id', '=', session('loggedUserId'))->first()
+            'loggedUserInfo'  =>  User::where('id', '=', session('loggedUserId'))->first(),
+            'user'  =>  User::where('id', '=', session('loggedUserId'))->first(),
+
         ];
 
         return view('user.dashbord', $data);
@@ -33,12 +35,6 @@ class UserController extends Controller
             'loggedUserInfo'  =>  User::where('id', '=', session('loggedUserId'))->first()
         ];
         return view('user.cards', $data);
-    }
-    function commands(){
-        $data   =   [
-            'loggedUserInfo'  =>  User::where('id', '=', session('loggedUserId'))->first()
-        ];
-        return view('user.commands', $data);
     }
     function qrCode(){
 

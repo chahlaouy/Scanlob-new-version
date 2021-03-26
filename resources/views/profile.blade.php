@@ -48,9 +48,9 @@
     </div>
 
     </div>
-    <section class="container mx-auto bg-profile flex justify-between rounded-3xl">
+    <section class="container mx-auto bg-profile md:flex md:justify-between rounded-3xl">
         
-        <div class="bg-gray-800 bg-opacity-5 rounded-3xl p-16 w-full">
+        <div class="bg-gray-800 bg-opacity-5 rounded-3xl p-1 md:p-16 w-full">
             @if (Session::get('success'))
             <div class="bg-green-300 w-full py-4 text-center rounded my-4">
                 {{Session::get('success')}}
@@ -61,8 +61,8 @@
                     {{Session::get('fail')}}
                 </div>
             @endif 
-            <div class="flex">
-                <div class="bg-white rounded-2xl shadow-2xl w-96 mr-6">
+            <div class="md:flex">
+                <div class="bg-white rounded-2xl shadow-2xl w-full md:w-96 md:mr-6 h-auto">
                     <div class="flex p-4">
                         @if (isset($user->userExtraInfo->img_url))
                             <img src="{{asset('assets/images/') . '/' .$user->userExtraInfo->img_url }}" class="h-96 w-full rounded-2xl object-cover" alt="">
@@ -76,7 +76,7 @@
                             <div class="flex-1">
                                 <h1 class="tracking-wide leading-loose capitalize">{{$user->username}}</h1>
                                 <span class="text-xs block">{{$user->email}}</span>
-                                @isset($$user->userExtraInfo->phone)
+                                @isset($user->userExtraInfo->phone)
                                     <span class="text-xs block">{{$user->userExtraInfo->phone}}</span>
                                 @endisset
                                 @isset($user->userExtraInfo->gender)
@@ -89,7 +89,7 @@
                         </div>
                         <hr class="my-4">
                         <p class="text-sm tracking-wide leading-loose text-gray-700">
-                            @isset($$user->userExtraInfo->summary)  
+                            @isset($user->userExtraInfo->summary)  
                                 {{$user->userExtraInfo->summary}}
                             @endisset
                         </p>
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 mt-4 md:mt-0">
                     <div class="bg-white rounded-2xl shadow-2xl p-8">
                         <div class="flex items-center justify-between">
                             <div>
@@ -151,14 +151,14 @@
                                 <span class="block">Poke</span>
                                 <span class="text-gray-500">155 personne</span>
                             </div>
-
+    
                             <div class="text-center p-4 text-sm">
                                 <span class="block">Pin</span>
                                 <span class="text-gray-500">155 personne</span>
                             </div>
                         </div>
                         
-                        <div class="flex">
+                        <div class="hidden md:flex mt-4">
                             <button class="px-4 py-2 bg-indigo-600 rounded-lg shadow-xl text-white mt-4 flex items-center mr-4">
                                 <ion-icon name="flash-outline" class="mr-2 text-lg"></ion-icon>
                                 <span>Poke</span>
@@ -171,16 +171,16 @@
                                 <ion-icon name="chatbubbles-outline" class="mr-2 text-xl"></ion-icon>
                                 <span>Dis Quelquechose</span>
                             </button>
-
+    
                         </div>
-
+    
                     </div>
                     <div class="bg-white rounded-2xl shadow-2xl p-8 mt-8">
                         <h1 class="tracking-wide leading-loose capitalize tex-3xl">Education</h1>
                         <span class="text-xs">Education</span>
                         <hr>
                         <div class="my-4">
-                            @isset($$user->userExtraInfo->education)                              
+                            @isset($user->userExtraInfo->education)                              
                                 <ul>
                                     @foreach ($user->userExtraInfo->education as $item)
                                     <li class="flex items-center">
@@ -201,7 +201,7 @@
                         <span class="text-xs">Intérêt</span>
                         <hr>
                         <div class="my-4">
-                            @isset($$user->userExtraInfo->interet)                              
+                            @isset($user->userExtraInfo->interet)                              
                                 <ul>
                                     @foreach ($user->userExtraInfo->interet as $item)
                                     <li class="flex items-center">
@@ -214,14 +214,14 @@
                                 </ul>
                             @endisset
                         </div>
-
+    
                     </div>
                     <div class="bg-white rounded-2xl shadow-2xl p-8 mt-8">
                         <h1 class="tracking-wide leading-loose capitalize tex-3xl">Compétences</h1>
                         <span class="text-xs">Compétences</span>
                         <hr>
                         <div class="my-4">
-                            @isset($$user->userExtraInfo->skills)                               
+                            @isset($user->userExtraInfo->skills)                               
                             <ul>
                                 @foreach ($user->userExtraInfo->skills as $item)
                                 <li class="flex items-center">
@@ -240,7 +240,7 @@
                         <span class="text-xs">Langues</span>
                         <hr>
                         <div class="my-4">
-                            @isset($$user->userExtraInfo->languages)                               
+                            @isset($user->userExtraInfo->languages)                               
                                 <ul>
                                     @foreach ($user->userExtraInfo->languages as $item)
                                     <li class="flex items-center">

@@ -112,13 +112,17 @@
                                 </ul>
                             </div> --}}
                         </div>
-                        <a href="{{route('cart.items')}}" class="bg-gray-100 px-4 py-2 rounded-lg shadow-xl text-gray-700 text-center block flex items-center">
-                            <ion-icon name="cart" class="text-xl mr-2"></ion-icon>
-                            <div class="block text-sm">
-                                <span>Panier</span>
-                                <span class="p-1 bg-yellow-400 text-xs rounded-2xl">{{Session::get('cartItems') | 0 }}</span>
-                            </div>
-                        </a>
+                        @if ($loggedUserInfo->username != 'Aymen.sai')
+                            
+                            
+                            <a href="{{route('cart.items')}}" class="bg-gray-100 px-4 py-2 rounded-lg shadow-xl text-gray-700 text-center block flex items-center">
+                                <ion-icon name="cart" class="text-xl mr-2"></ion-icon>
+                                <div class="block text-sm">
+                                    <span>Panier</span>
+                                    <span class="p-1 bg-yellow-400 text-xs rounded-2xl">{{Session::get('cartItems') | 0 }}</span>
+                                </div>
+                            </a>
+                        @endif
                     </div>
                 @else   
                     <a href="{{route('qr-code')}}" class="bg-indigo-600 px-4 py-2 text-gray-100 rounded-lg shadow-xl block">
@@ -199,7 +203,13 @@
                                 <ul>
                                     <li class="px-4 py-2  hover:bg-gray-300 flex items-center">
                                         <ion-icon name="apps" class="mr-1"></ion-icon>
-                                        <a href="{{route('user.dashboard')}}">Dashboard</a>
+                                        @if ($loggedUserInfo->username != 'Aymen.sai')
+                                            
+                                            <a href="{{route('user.dashboard')}}">Dashboard</a>
+                                        @else
+                                            
+                                            <a href="{{route('admin.dashboard')}}">Dashboard</a>
+                                        @endif
                                     </li>
                                     <li class="px-4 py-2  hover:bg-gray-300 flex items-center">
                                         <ion-icon name="log-out" class="mr-1"></ion-icon>
@@ -208,13 +218,18 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="{{route('cart.items')}}" class="bg-gray-100 px-4 py-2 rounded-lg shadow-xl text-gray-700 text-center block flex items-center">
-                            <ion-icon name="cart" class="text-xl mr-2"></ion-icon>
-                            <div class="block text-sm">
-                                <span>Panier</span>
-                                <span class="p-1 bg-yellow-400 text-xs rounded-2xl">{{Session::get('cartItems') | 0 }}</span>
-                            </div>
-                        </a>
+                        @if ($loggedUserInfo->username != 'Aymen.sai')
+                            
+                            
+                            <a href="{{route('cart.items')}}" class="bg-gray-100 px-4 py-2 rounded-lg shadow-xl text-gray-700 text-center block flex items-center">
+                                <ion-icon name="cart" class="text-xl mr-2"></ion-icon>
+                                <div class="block text-sm">
+                                    <span>Panier</span>
+                                    <span class="p-1 bg-yellow-400 text-xs rounded-2xl">{{Session::get('cartItems') | 0 }}</span>
+                                </div>
+                            </a>
+                        @endif
+                        
                     </div>
                 @else   
                     <a href="{{route('qr-code')}}" class="bg-indigo-600 mr-2 px-4 py-2 text-gray-100 rounded-lg shadow-xl block">
@@ -246,7 +261,11 @@
                     <h1 class="text-sm lg:text-4xl text-purple-500">Prêt à commencer ?!</h1>
                     <h1 class="text-sm lg:text-4xl text-blue-500"> Parle-nous aujourd'hui</h1>
                 </div>
-                <button class="text-xs bg-indigo-600 text-white rounded-lg px-4 py-2 w-24 lg:w-48">Get Started</button>
+                <button class="text-xs bg-indigo-600 text-white rounded-lg px-4 py-2 w-24 lg:w-48">
+                    <a href="/nos-offres">
+                        Get Started
+                    </a>
+                </button>
             </div>
         </div>
         <div class="bg-indigo-600 text-gray-200 p-8 md:px-24 xl:px-48 relative z-30">

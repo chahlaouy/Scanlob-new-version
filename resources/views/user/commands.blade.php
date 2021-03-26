@@ -12,13 +12,13 @@
             <li>
                 <a href="{{route('user.dashboard')}}" class="py-2 flex items-center hover:text-indigo-600">
                     <ion-icon name="apps" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Dashboard</span>
+                    <span class="capitalize tracking-wider leading-loose">Profile</span>
                 </a>
             </li>
             <li>
                 <a href="{{route('user.profile')}}" class="py-2 flex items-center hover:text-indigo-600">
                     <ion-icon name="person" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Profile</span>
+                    <span class="capitalize tracking-wider leading-loose">Editeur</span>
                 </a>
             </li>
             
@@ -42,8 +42,8 @@
             </li>
             <li>
                 <a href="{{ route('user.reviews')}}" class="py-2 flex items-center hover:text-indigo-600">
-                    <ion-icon name="star" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Mes Avis</span>
+                    <ion-icon name="mail-unread" class="text-indigo-600 mr-2 text-lg"></ion-icon>
+                    <span class="capitalize tracking-wider leading-loose">Mes Messageries</span>
                 </a>
             </li>
             <li>
@@ -71,58 +71,34 @@
                                     </h1>
                                     <span class="text-sm block text-gray-600">Quantité:</span>
                                     <span class="text-xl block text-indigo-700">{{$command->quantity}}</span>
+                                    @if ($command->isValidated)
+                                        <div class="text-xs bg-green-400 p-1 my-1 rounded-2xl text-center text-green-800">
+                                            Validée
+                                        </div>
+                                    @else
+                                        <div class="text-xs bg-yellow-400 p-1 my-1 rounded-2xl text-center text-green-800">
+                                            En cours
+                                        </div>
+                                    @endif 
                                 </div>
                                 <div class="text-3xl">
                                     {{$command->price}}€
                                 </div>
+                                
                             </div>
                             <hr class="my-4">
                             <div class="flex items-center justify-end">
                                 <button class="bg-red-400 text-gray-100 shadow-2xl rounded px-4 py-2">
-                                    <a href="/delete-command/{{$command->id}}">Voir commande</a>  
+                                    <a href="/command-details/{{$command->id}}">Voir commande</a>  
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
-        </div>
-        {{-- <div class="flex-1 px-6">
-            
-            <div class="bg-white shadow-2xl rounded-2xl mt-5 p-8">
-                <h1 class="text-3xl mb-16">Liste Des Produits</h1>
-                @foreach ($command as $command)
-                    <div class="flex command-center justify-between my-2">
-                        <div class="text-lg text-gray-700">
-                            {{$command->name}}
-                        </div>
-                        <div class="font-bold text-lg">
-                            {{$command->quantity * $command->price}}€
-                            
-                        </div>
-                    </div>
-                    <hr>
-                @endforeach
-                <div class="flex command-center justify-between mt-16">
-                    <div class="text-3xl">
-                        Total
-                    </div>
-                    <div>
-                        {{$total}}€
-                        
-                    </div>
-                </div>
-                <div class="flex command-center justify-end mt-16">
-                    <div class="bg-indigo-600 text-gray-100 px-4 py-2 rounded shadow-2xl flex command-center ">
-                        <ion-icon name="cart" class="text-xl mr-2"></ion-icon>
-                        <a href="/checkout">Acheter Maintenant</a>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-            
+        </div>     
         @else
-            <h1 class="text-gray-700 text-4xl">Sorry No Cart is empty</h1>
+            <h1 class="text-gray-100 text-4xl">Vous n'avez pas des commandes en cours</h1>
         @endif
     </div>
      

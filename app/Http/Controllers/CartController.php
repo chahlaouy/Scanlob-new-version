@@ -148,6 +148,7 @@ class CartController extends Controller
             $command->offers_id = $item->associatedModel->id;
             $command->price = $item->price;
             $command->quantity = $item->quantity;
+            $command->isValidated = false;
 
             $command->save();
 

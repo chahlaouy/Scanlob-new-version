@@ -18,7 +18,7 @@
         <div class="max-w-2xl bg-white rounded-2xl shadow-2xl p-4 md:p-12 leading-loose tracking-wide">
             <form action="" method="post">
                 @csrf
-                <h1 class="mb-4 uppercase text-xl text-center">contactez-nous</h1>
+                <h1 class="uppercase text-xl text-center ">contactez-nous</h1>
                 <div class="flex items-center">
                     <div class="w-full md:w-96 p-4">
                         <label class="block mt-4">

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Qrcode;
 
+use Carbon\Carbon;
+
+use Mail;
+
 class UserAuthController extends Controller
 {
 
@@ -164,8 +168,7 @@ class UserAuthController extends Controller
         // Return home after login
         return redirect()->route('home');
     }
-    protected function registerOrLoginUser($data)
-    {
+    protected function registerOrLoginUser($data){
 
         $user = User::where('email', '=', $data->email)->first();
         if (!$user) {
@@ -215,15 +218,14 @@ class UserAuthController extends Controller
 
     function handleProviderCallbackFaceBook(){
 
-        $user = \Socialite::driver('google')->user();
+        $user = \Socialite::driver('facebook')->user();
 
         $this->registerOrLoginUserFacebook($user);
 
         // Return home after login
         return redirect()->route('home');
     }
-    protected function registerOrLoginUserFacebook($data)
-    {
+    protected function registerOrLoginUserFacebook($data){
 
         $user = User::where('email', '=', $data->email)->first();
         if (!$user) {
@@ -267,4 +269,62 @@ class UserAuthController extends Controller
         }
     }
     
+
+    /** Reset Password Functionality */
+
+    function getEmail(){
+
+        return view('auth.email');
+    }
+
+    public function postEmail(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:users',
+        ]);
+
+        $token = \Str::random(64);
+
+        DB::table('password_resets')->insert(
+            ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
+        );
+
+        Mail::send('auth.verify', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Reset Password Notification');
+        });
+
+        return back()->with('message', 'We have e-mailed your password reset link!');
+    }
+
+
+    public function getPassword($token) { 
+
+        return view('auth.reset', ['token' => $token]);
+    }
+   
+    public function updatePassword(Request $request){
+   
+        $request->validate([
+            'email' => 'required|email|exists:users',
+            'password' => 'required|string|min:4',
+            // 'password_confirmation' => 'required',
+    
+        ]);
+    
+        $updatePassword = DB::table('password_resets')
+                            ->where(['email' => $request->email, 'token' => $request->token])
+                            ->first();
+    
+        if(!$updatePassword)
+            return back()->with('error', 'Invalid token!');
+    
+        $user = User::where('email', $request->email)
+                    ->update(['password' => Hash::make($request->password)]);
+    
+        DB::table('password_resets')->where(['email'=> $request->email])->delete();
+    
+        return redirect('/connexion')->with('message', 'Your password has been changed!');
+   
+    }
+
 }

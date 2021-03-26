@@ -31,7 +31,7 @@
                         <h2 class="text-2xl capitalize my-4 text-gray-900">coordonnées</h2>
                         <hr>
                         {{-- Personal Info --}}
-                        <div class="grid grid-cols-2  gap-4">
+                        <div class="md:grid md:grid-cols-2  gap-4">
 
                             
                             <div>
@@ -80,7 +80,7 @@
                         {{-- Billing address --}}
                         <h2 class="text-2xl capitalize my-4 text-gray-900">Adresse de facturation</h2>
                         <hr>
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="md:grid md:grid-cols-2 gap-4">
 
                             
                             <div>

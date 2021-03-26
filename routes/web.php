@@ -87,7 +87,12 @@ Route::group(['middleware' => 'isLogged'], function(){
     /**Commands controller */
     
     Route::get('/admin/gestion-commands', [CommandsController::class, 'indexAdmin'])->name('admin.commands');
+    Route::get('/admin/command/{id}', [CommandsController::class, 'getCommand']);
+    Route::get('/admin/validate-command/{id}', [CommandsController::class, 'validateCommand']);
+    Route::get('/admin/commande-non-validee', [CommandsController::class, 'getNonValidCommand'])->name('admin.unvalidated-command');
+    Route::get('/admin/commande-validee', [CommandsController::class, 'getValidCommand'])->name('admin.validated-command');
     Route::get('/mes-commands', [CommandsController::class, 'indexUser'])->name('user.commands');
+    Route::get('/command-details/{id}', [CommandsController::class, 'getCommandUser']);
     
     /** Offers controller */
     
@@ -115,7 +120,16 @@ Route::group(['middleware' => 'alreadyLoggedIn'], function(){
     
     Route::get('/connexion', [UserAuthController::class, 'login'])->name('user.login');
     Route::get('/inscription', [UserAuthController::class, 'register'])->name('user.register');
+
+    /** reset password */
+
+    Route::get('/forget-password', [UserAuthController::class, 'getEmail'])->name('user.get-email');
+    Route::post('/forget-password', [UserAuthController::class, 'postEmail'])->name('user.post-email');
     
+    Route::get('/reset-password/{token}', [UserAuthController::class, 'getPassword']);
+    Route::post('/reset-password', [UserAuthController::class, 'updatePassword'])->name('user.update-password');
+
+
     // Routes for Admin
     
     Route::get('/admin/connexion', [AdminAuthController::class, 'login'])->name('admin.login');

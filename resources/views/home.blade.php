@@ -12,8 +12,8 @@
 <div class="flex mt-8 md:mt-28 container mx-auto">
             
     <div class="flex-1">
-        <h2 class="text-sm uppercase text-indigo-600 tracking-wider leading-loose">bienvenue scanlob</h2>
-        <h1 class="text-7xl text-gray-800  ">Vous n'avez plus besoin de cv ! </h1>
+        {{-- <h2 class="text-sm uppercase text-indigo-600 tracking-wider leading-loose">bienvenue scanlob</h2> --}}
+        <h1 class="text-7xl text-gray-800  capitalize">Développer Votre Quotidien</h1>
         <p class="max-w-lg mt-12 text-gray-500 tracking-wide leading-loose">
             Avec SCANLOB, 
             <span class="text-indigo-600">
@@ -86,22 +86,13 @@
 -->
 <section class="bg-purple-600 mt-16">
     <div class="container mx-auto py-8 md:py-12 md:flex md:justify-between">
-        <div class="flex">
+        <div class="gflex">
             <h1 class="text-4xl border-l-4 border-gray-100 text-gray-100 pl-4 max-w-md">
                 Télécharger Notre App SCANLOB
             </h1>
-            <p class="text-lg text-gray-200 w-40 tracking-wide leading-loose">
+            <p class="text-lg text-gray-200 w-full tracking-wide leading-loose mt-4">
                 Votre meilleure solution pour développer votre quotidien
             </p>
-                {{-- <ul class="text-sm text-gray-200 w-40 tracking-wide leading-loose">
-                    <li>
-                        Des cartes visites uniques et personnaliser,
-                        permet de simplifier la recherche d'emploi/Business
-                    </li>
-                    <li>
-                        Vous pouvez profiter à tout moment de partager votre expérience sans avoir un CV entre les main !
-                    </li>
-                </ul> --}}
         </div>
         <div class="flex">
             <div class="flex items-center justify-center">
@@ -165,7 +156,7 @@
 <section class="container mx-auto">
     <h1 class="text-5xl text-gray-800 my-8 md:my-24 text-center">Nos derniére offre </h1>
 
-    <section class="md:grid md:grid-cols-3 md:gap-8 px-12">
+    <section class="md:grid md:grid-cols-3 md:gap-8 md:px-12">
 
         @foreach ($offers as $offer) 
             <div id="card" class="overflow-hidden rounded-lg">

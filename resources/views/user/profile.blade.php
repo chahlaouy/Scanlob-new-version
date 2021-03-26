@@ -12,13 +12,13 @@
             <li>
                 <a href="{{route('user.dashboard')}}" class="py-2 flex items-center hover:text-indigo-600">
                     <ion-icon name="apps" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Dashboard</span>
+                    <span class="capitalize tracking-wider leading-loose">Profile</span>
                 </a>
             </li>
             <li>
                 <a href="{{route('user.profile')}}" class="py-2 flex items-center text-indigo-600">
                     <ion-icon name="person" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Profile</span>
+                    <span class="capitalize tracking-wider leading-loose">Editeur</span>
                 </a>
             </li>
             
@@ -42,8 +42,8 @@
             </li>
             <li>
                 <a href="{{ route('user.reviews')}}" class="py-2 flex items-center hover:text-indigo-600">
-                    <ion-icon name="star" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Mes Avis</span>
+                    <ion-icon name="mail-unread" class="text-indigo-600 mr-2 text-lg"></ion-icon>
+                    <span class="capitalize tracking-wider leading-loose">Mes Messageries</span>
                 </a>
             </li>
             <li>
@@ -54,7 +54,7 @@
             </li>
         </ul>
     </div>  
-    <div class="bg-gray-800 bg-opacity-5 rounded-3xl  md:p-12 w-full rounded">
+    <div class="bg-gray-800 bg-opacity-5 rounded-3xl md:p-12 w-full rounded">
 
         @if (Session::get('success'))
             <div class="bg-green-300 w-full py-4 text-center rounded my-4">
@@ -103,7 +103,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 mt-4 md:mt-0">
                     <div class="bg-white rounded-2xl shadow-2xl p-8">
                         <h1 class="tracking-wide leading-loose capitalize tex-3xl">Personal Information</h1>
                         <span class="text-xs">Veuillez entrer vos information personel</span>

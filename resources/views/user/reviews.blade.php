@@ -12,13 +12,13 @@
             <li>
                 <a href="{{route('user.dashboard')}}" class="py-2 flex items-center hover:text-indigo-600">
                     <ion-icon name="apps" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Dashboard</span>
+                    <span class="capitalize tracking-wider leading-loose">Profile</span>
                 </a>
             </li>
             <li>
                 <a href="{{route('user.profile')}}" class="py-2 flex items-center hover:text-indigo-600">
                     <ion-icon name="person" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Profile</span>
+                    <span class="capitalize tracking-wider leading-loose">Editeur</span>
                 </a>
             </li>
             
@@ -42,8 +42,8 @@
             </li>
             <li>
                 <a href="{{ route('user.reviews')}}" class="py-2 flex items-center text-indigo-600">
-                    <ion-icon name="star" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Mes Avis</span>
+                    <ion-icon name="mail-unread" class="text-indigo-600 mr-2 text-lg"></ion-icon>
+                    <span class="capitalize tracking-wider leading-loose">Mes Messageries</span>
                 </a>
             </li>
             <li>

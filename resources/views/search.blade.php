@@ -7,16 +7,16 @@
 @section('content')
 <div class="bg-gray-800 bg-opacity-5 rounded-3xl p-16 w-full">
     @if (isset($user))     
-        <div class="p-4 bg-white shadow-2xl flex rounded-2xl">
-            <div class="flex mr-8">
+        <div class="p-4 bg-white shadow-2xl md:flex rounded-2xl">
+            <div class="md:flex md:justify-center md:mr-8">
                 @if (isset($user->userExtraInfo->img_url))
-                    <img src="{{asset('assets/images/') . '/' .$user->userExtraInfo->img_url }}" class="w-24 rounded-2xl object-cover shadow-2xl" alt="">
+                    <img src="{{asset('assets/images/') . '/' .$user->userExtraInfo->img_url }}" class="w-56 md:w-24 rounded-2xl object-cover shadow-2xl" alt="">
                 @else
-                    <img src="{{asset('assets/images/profile.png') }}" class="w-24 rounded-2xl object-cover shadow-2xl" alt=""> 
+                    <img src="{{asset('assets/images/profile.png') }}" class="w-56 md:w-24 rounded-2xl object-cover shadow-2xl" alt=""> 
                 @endif
             </div>
             <div class="w-full">
-                <div class="flex items-center justify-between w-full">
+                <div class="md:flex md:items-center md:justify-between w-full">
                     <div>
                         <h1 class="text-2xl text-gray-800">
                             {{$user->username}}
@@ -27,7 +27,7 @@
                         @endisset
                     </div>
                     <div>
-                        <a href="/profile/{{$user->id}}" class="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg shadow-2xl">
+                        <a href="/profile/{{$user->id}}" class="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg shadow-2xl mt-8 md:mt-0 block">
                             Voir le profil
                         </a>
                     </div>

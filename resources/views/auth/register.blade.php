@@ -36,7 +36,7 @@
             <form action="{{route('user.create')}}" method="POST">
                 @csrf
                 <div>
-                    <input type="text" class="w-full px-4 py-2 my-4 bg-red-200 rounded outline-white" placeholder="Nom Prénom" name="username" value="{{ old('username') }}">
+                    <input type="text" class="w-full px-4 py-2 my-4 bg-red-200 rounded outline-white" placeholder="Nom d'utilisateur" name="username" value="{{ old('username') }}">
                     <span class="block text-red-400">
                         @error('username')
                             {{$message}}
