@@ -296,9 +296,6 @@
             </div>
         </div>
     </footer>
+    
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK_H25782ntfx8P1phlMxs1KngoieEaYw&callback=initAutocomplete&libraries=places&v=weekly"
-    async defer
-    ></script>
 </body>

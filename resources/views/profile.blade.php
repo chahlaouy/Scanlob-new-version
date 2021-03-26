@@ -61,6 +61,11 @@
                     {{Session::get('fail')}}
                 </div>
             @endif 
+            <div class="p-4 w-full">
+                <div class="bg-indigo-200 w-full h-96 rounded-xl">
+                    <div class="h-full w-full" id="map_profile"></div>
+                </div>
+            </div>
             <div class="md:flex">
                 <div class="bg-white rounded-2xl shadow-2xl w-full md:w-96 md:mr-6 h-auto">
                     <div class="flex p-4">
@@ -94,11 +99,11 @@
                             @endisset
                         </p>
                     </div>
-                    <div class="p-4">
+                    {{-- <div class="p-4">
                         <div class="bg-indigo-200 w-full h-96 rounded-xl">
                             <div class="h-full w-full" id="map_profile"></div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="flex-1 mt-4 md:mt-0">
                     <div class="bg-white rounded-2xl shadow-2xl p-8">
@@ -260,5 +265,56 @@
         
         
     </section>
+
+
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-K9j_V0TfxcRVIamBVipT8kiyFsk2cgE&callback=initMap">
+    </script>
+
+
+    <script defer>
+
+        initMap =  function(){
+            var image = new google.maps.MarkerImage("{{ asset('assets/images/marker.png') }}", null, null, null, new google.maps.Size(52,52));
+            const map = new google.maps.Map(document.getElementById("map_profile"), {
+                zoom: 6,
+                center: { 
+                    lat: {{$lat}}, 
+                    lng: {{$lng}} 
+                    },
+            });
+            function addMarker(location){
+                var marker = new google.maps.Marker({
+                position: { 
+                    lat: location.lat, 
+                    lng:location.lng,
+                },
+                icon: image,
+                title: "pined By!",
+                map: map
+                });
+
+
+                marker.addListener('mouseover', () => {
+                    infoWindow.open(map, marker)
+                })
+                const infoWindow = new google.maps.InfoWindow({
+                    content : `
+                            <div class="w-96 h-96 p-2">
+                                <img src="{{asset('assets/images/profile.png')}}" alt="" class="w-full h-72 bg-cover bg-center object-cover">
+                                <div class="text-center">
+                                    <h1 class="my-4 ">title goes here</h1>
+                                    <h1 class="my-4">email goes here</h1>
+                                    <a href="#">see profile</a>
+                                </div>
+                            </div>
+                    `
+                })
+            }
+            addMarker({ lat: {{$lat}}, lng: {{$lng}} })
+        }
+
+    </script>
 @endisset
 @endsection

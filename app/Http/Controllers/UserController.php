@@ -24,8 +24,9 @@ class UserController extends Controller
     }
 
     function profile(){
+
         $data   =   [
-            'loggedUserInfo'  =>  User::where('id', '=', session('loggedUserId'))->first()
+            'loggedUserInfo'  =>  User::where('id', '=', session('loggedUserId'))->first(),
         ];
         return view('user.profile', $data);
     }

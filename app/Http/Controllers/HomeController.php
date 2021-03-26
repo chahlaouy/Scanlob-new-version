@@ -142,10 +142,16 @@ class HomeController extends Controller
 
             /** logged user */
             if(session()->has('loggedUserId')){
+
+                $lat = 46.2276;
+                $lng = 2.2137;
+
                 $loggeduser   =   User::where('id', '=', session('loggedUserId'))->first();
                 $data = [
                     'user' => $user,
                     'loggedUserInfo'  =>  $loggeduser,
+                    'lat' => $lat,
+                    'lng' => $lng
                 ];
                 return view('profile', $data);
 
