@@ -26,3 +26,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return "done";
 });
 Route::post('/pin', [HomeController::class, 'pin']);
+Route::post('/poke', [HomeController::class, 'poke']);

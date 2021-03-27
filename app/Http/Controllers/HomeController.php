@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Offers;
 use App\Models\Qrcode;
+use App\Models\Location;
+use App\Models\Poke;
 
 use Illuminate\Support\Facades\DB;
 
@@ -158,9 +160,6 @@ class HomeController extends Controller
 
                 $data = [
                     'user' => $user,
-                    'lat' => $lat,
-                    'lng' => $lng,
-                    'locations' => $locations
                 ];
                 return view('profile', $data);
             }
@@ -196,6 +195,24 @@ class HomeController extends Controller
         $location->user_id = $request->username;
 
         $location->save();
+
+        return 'success';
+
+    }
+    function poke(Request $request){
+
+        $poke = Poke::where('username', '=', $request->username)->first();
+        if($poke){
+            return "fail";
+        }
+        
+        $poke = new Poke();
+
+        $poke->total = $poke->total + 1;
+        $poke->profile_id = $request->profileId;
+        $poke->username = $request->username;
+
+        $poke->save();
 
         return 'success';
 

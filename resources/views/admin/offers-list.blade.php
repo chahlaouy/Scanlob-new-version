@@ -82,12 +82,12 @@
                                 {{$offer->price}}
                             </td>
                             <td class="py-3 px-6 text-center whitespace-nowrap">
-                                <a href="/admin/editer-offre/{{$offer->id}}">
+                                <a href="/aymen/editer-offre/{{$offer->id}}">
                                     <ion-icon name="create" class="text-xl text-blue-400"></ion-icon>
                                 </a>
                             </td>
                             <td class="py-3 px-6 text-center whitespace-nowrap">
-                                <a href="/admin/confirmation/{{$offer->id}}">
+                                <a href="/aymen/confirmation/{{$offer->id}}">
                                     <ion-icon name="trash" class="text-xl text-red-400"></ion-icon>
                                 </a>
                             </td>

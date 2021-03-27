@@ -11,21 +11,18 @@
 @section('content')
 @isset($user)
     <!-- Map Modal -->
-    <div id="mapModel" class="modal">
+    <div id="mapModel" class="mapModal">
 
         <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="mapclose">&times;</span>
             <div class="w-full p-4">
                 <div class="bg-white rounded-2xl shadow-2xl p-8 mt-8">
+                    <div class="w-full py-2 bg-green-400 rounded-xl text-center text-gray-700" id="success"></div>
+                    <div class="w-full py-2 bg-red-400 rounded-xl text-center text-gray-700" id="fail"></div>
                     <h1 class="tracking-wide leading-loose capitalize tex-3xl">Addresse</h1>
                     <span class="text-xs">Veuillez Votre addresse</span>
                     <hr class="mb-4">
-                    <span class="text-red-400">
-                        @error('address')
-                            {{$message}}
-                        @enderror
-                    </span>
                     <input
                     name="address"
                     id="pac-input"
@@ -35,6 +32,7 @@
                     />
                     <div id="map" class="w-full h-96"></div>
                 </div>
+                <button id="submitPin" class="w-full py-2 text-gray-100 bg-indigo-600 mt-4 rounded-xl">Pin</button>
             </div>
         </div>
 
@@ -90,11 +88,11 @@
                     {{Session::get('fail')}}
                 </div>
             @endif 
-            <div class="p-4 w-full">
+            {{-- <div class="p-4 w-full">
                 <div class="bg-indigo-200 w-full h-96 rounded-xl">
                     <div class="h-full w-full" id="map_profile"></div>
                 </div>
-            </div>
+            </div> --}}
             <div class="md:flex">
                 <div class="bg-white rounded-2xl shadow-2xl w-full md:w-96 md:mr-6 h-auto">
                     <div class="flex p-4">
@@ -191,9 +189,10 @@
                                 <span class="text-gray-500">155 personne</span>
                             </div>
                         </div>
-                        
+                        <div class="w-full py-2 bg-green-400 rounded-xl text-center text-gray-700" id="successPoke"></div>
+                        <div class="w-full py-2 bg-red-400 rounded-xl text-center text-gray-700" id="failPoke"></div>
                         <div class="md:flex mt-4">
-                            <button class="px-4 py-2 bg-indigo-600 rounded-lg shadow-xl text-white mt-4 flex items-center mr-4">
+                            <button class="px-4 py-2 bg-indigo-600 rounded-lg shadow-xl text-white mt-4 flex items-center mr-4" id="poke">
                                 <ion-icon name="flash-outline" class="mr-2 text-lg"></ion-icon>
                                 <span>Poke</span>
                             </button>
@@ -298,87 +297,95 @@
 
 
     <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-K9j_V0TfxcRVIamBVipT8kiyFsk2cgE&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-K9j_V0TfxcRVIamBVipT8kiyFsk2cgE&callback=initMap&libraries=places">
     </script>
+    {{-- <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-K9j_V0TfxcRVIamBVipT8kiyFsk2cgE&libraries=places"> --}}
 
     <script defer>
+        window.pinLat = 0
+        window.pinLng = 0
         window.initMap =  function(){
 
-        const myLatLng = { lat: -25.363, lng: 131.044 };
-        const map = new google.maps.Map(document.getElementById("map_profile"), {
-            zoom: 4,
-            center: myLatLng,
-        });
-        new google.maps.Marker({
-            position: myLatLng,
-            map,
-            title: "Hello World!",
-        });
-        }
-        window.initAutocomplete = function () {
-        const map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: -33.8688, lng: 151.2195 },
-            zoom: 13,
-            mapTypeId: "roadmap",
-        });
-        // Create the search box and link it to the UI element.
-        const input = document.getElementById("pac-input");
-        const searchBox = new google.maps.places.SearchBox(input);
-        // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener("bounds_changed", () => {
-            searchBox.setBounds(map.getBounds());
-        });
-        let markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener("places_changed", () => {
-            const places = searchBox.getPlaces();
-
-            if (places.length == 0) {
-                return;
+            const myLatLng = { lat: -25.363, lng: 131.044 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: myLatLng,
+            });
+            new google.maps.Marker({
+                position: myLatLng,
+                map,
+                title: "Hello World!",
+            });
+            window.infoWindow = new google.maps.InfoWindow();
+            window.initAutocomplete = function () {
+                const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: -33.8688, lng: 151.2195 },
+                zoom: 13,
+                mapTypeId: "roadmap",
+                });
+                // Create the search box and link it to the UI element.
+                const input = document.getElementById("pac-input");
+                const searchBox = new google.maps.places.SearchBox(input);
+                // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                // Bias the SearchBox results towards current map's viewport.
+                map.addListener("bounds_changed", () => {
+                    searchBox.setBounds(map.getBounds());
+                });
+                let markers = [];
+                // Listen for the event fired when the user selects a prediction and retrieve
+                // more details for that place.
+                searchBox.addListener("places_changed", () => {
+                    const places = searchBox.getPlaces();
+    
+                    if (places.length == 0) {
+                        return;
+                    }
+                    // Clear out the old markers.
+                    markers.forEach((marker) => {
+                        marker.setMap(null);
+                    });
+                    markers = [];
+                    // For each place, get the icon, name and location.
+                    const bounds = new google.maps.LatLngBounds();
+                    places.forEach((place) => {
+                        if (!place.geometry || !place.geometry.location) {
+                            console.log("Returned place contains no geometry");
+                            return;
+                        }
+                        const icon = {
+                            url: place.icon,
+                            size: new google.maps.Size(71, 71),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(25, 25),
+                        };
+                        // Create a marker for each place.
+                        markers.push(
+                            new google.maps.Marker({
+                                map,
+                                icon,
+                                title: place.name,
+                                position: place.geometry.location,
+                            })
+                        );
+    
+                        if (place.geometry.viewport) {
+                            // Only geocodes have viewport.
+                            window.pinLat = place.geometry.location.lat()
+                            window.pinLng = place.geometry.location.lat()
+                            console.log(window.pinLat, window.pinLng)
+                            bounds.union(place.geometry.viewport);
+                        } else {
+                            bounds.extend(place.geometry.location);
+                        }
+                    });
+                    map.fitBounds(bounds);
+                });
             }
-            // Clear out the old markers.
-            markers.forEach((marker) => {
-                marker.setMap(null);
-            });
-            markers = [];
-            // For each place, get the icon, name and location.
-            const bounds = new google.maps.LatLngBounds();
-            places.forEach((place) => {
-                if (!place.geometry || !place.geometry.location) {
-                    console.log("Returned place contains no geometry");
-                    return;
-                }
-                const icon = {
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(25, 25),
-                };
-                // Create a marker for each place.
-                markers.push(
-                    new google.maps.Marker({
-                        map,
-                        icon,
-                        title: place.name,
-                        position: place.geometry.location,
-                    })
-                );
-
-                if (place.geometry.viewport) {
-                    // Only geocodes have viewport.
-                    bounds.union(place.geometry.viewport);
-                } else {
-                    bounds.extend(place.geometry.location);
-                }
-            });
-            map.fitBounds(bounds);
-        });
-    }
-        infoWindow = new google.maps.InfoWindow();
-            const locationButton = document.getElementById('location-button')
+            initAutocomplete()
+        }
+            
+            const locationButton = document.getElementById('submitPin')
             locationButton.addEventListener("click", () => {
                 // Try HTML5 geolocation.
                 if (navigator.geolocation) {
@@ -391,39 +398,64 @@
                     console.log(pos)
     
                     /*  send ajax request to back end here*/
-    
-                    window.$.ajax( {
-                            type: 'POST',
-                            header:{
-                                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-                            },
-                            url: "/api/pin",
-                            data:{
-                                _token: "{{ csrf_token() }}",
-                                dataType: 'json', 
-                                contentType:'application/json', 
-                                lat: pos.lat,
-                                lng: pos.lng,
-                                profileId: {{ $user->id }},
-                                @if (isset($loggedUserInfo))
-                                    username: "{{ $loggedUserInfo->username }}",
-                                @else
-                                    username: "unknown"
-                                @endif
-                            },
-                        
-                        })
-                            .done((data) => {
-                                console.log(data)
+                    if (pos.lat){
+                        window.pinLat = pos.lat
+                        window.pinLng = pos.lng
+                    }
+                    if(!window.pinLat && !window.pinLng){
+                        const fail = document.getElementById("fail");
+                        fail.style.display = "block";
+                        fail.innerHTML = "il y avait une erreur s'il vous plaît verifier que vous avez entrer une addresse"
+                        setTimeout(() => {
+                            fail.style.display = "none";
+                        }, 2000);
+                    }else{
+
+                        window.$.ajax( {
+                                type: 'POST',
+                                header:{
+                                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                                },
+                                url: "/api/pin",
+                                data:{
+                                    _token: "{{ csrf_token() }}",
+                                    dataType: 'json', 
+                                    contentType:'application/json', 
+                                    lat : window.pinLat,
+                                    lng : window.pinLng,
+                                    profileId: {{ $user->id }},
+                                    @if (isset($loggedUserInfo))
+                                        username: "{{ $loggedUserInfo->username }}",
+                                    @else
+                                        username: "unknown"
+                                    @endif
+                                },
+                            
                             })
-                            .fail((data) => {
-                                
-                            });
+                                .done((data) => {
+                                    if(data == "success"){
+                                        const success = document.getElementById("success");
+                                        success.style.display = "block";
+                                        success.innerHTML = "Pin Avec success"
+                                        setTimeout(() => {
+                                            success.style.display = "none";
+                                        }, 2000);
+                                    }
+                                })
+                                .fail((data) => {
+                                    const fail = document.getElementById("fail");
+                                    fail.style.display = "block";
+                                    fail.innerHTML = "il y avait une erreur s'il vous plaît essayer plus tard"
+                                    setTimeout(() => {
+                                        fail.style.display = "none";
+                                    }, 2000);
+                                });
+                    }
     
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent("Emplacement trouvé.");
-                    infoWindow.open(map);
-                    map.setCenter(pos);
+                    // infoWindow.setPosition(pos);
+                    // infoWindow.setContent("Emplacement trouvé.");
+                    // infoWindow.open(map);
+                    // map.setCenter(pos);
                     },
                     () => {
                     handleLocationError(true, infoWindow, map.getCenter());
@@ -443,6 +475,57 @@
                 );
                 infoWindow.open(map);
             }
+
+
+            const poke = document.getElementById('poke');
+
+            poke.addEventListener('click', () => {
+
+                /** begin */
+
+                window.$.ajax( {
+                    type: 'POST',
+                    header:{
+                        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "/api/poke",
+                    data:{
+                        _token: "{{ csrf_token() }}",
+                        dataType: 'json', 
+                        contentType:'application/json', 
+                        profileId: {{ $user->id }},
+                        @if (isset($loggedUserInfo))
+                            username: "{{ $loggedUserInfo->username }}",
+                        @else
+                            username: "unknown"
+                        @endif
+                    },
+                
+                })
+                    .done((data) => {
+                        if(data == "success"){
+                            const successPoke = document.getElementById("successPoke");
+                            successPoke.style.display = "block";
+                            successPoke.innerHTML = "poked"
+                            setTimeout(() => {
+                                successPoke.style.display = "none";
+                            }, 2000);
+                        }else{
+                            const failPoke = document.getElementById("failPoke");
+                            failPoke.style.display = "block";
+                            failPoke.innerHTML = "Vous avez deja fait un Poke"
+                            setTimeout(() => {
+                                failPoke.style.display = "none";
+                            }, 2000);
+                        }
+                    })
+                    .fail((data) => {
+                        
+                    });
+                
+                /** end */ 
+
+            })
     </script>
     
 @endisset

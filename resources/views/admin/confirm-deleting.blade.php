@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="/admin/supprimer-offre/{{$offer->id}}" method="POST">
+                <form action="/aymen/supprimer-offre/{{$offer->id}}" method="POST">
                     @csrf
                     <button type="submit" class="w-full bg-red-400 text-gray-100 py-3 mt-8 text-center rounded">
                         Confirmer suppresssion

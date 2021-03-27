@@ -55,7 +55,7 @@ Route::post('/verify-qr-ceode', [UserAuthController::class, 'verifyCode'])->name
 
 // Admin Routes
 
-Route::post('/admin/check', [AdminAuthController::class, 'check'])->name('admin.check');
+Route::post('/aymen/check', [AdminAuthController::class, 'check'])->name('admin.check');
 
 Route::group(['middleware' => 'isLogged'], function(){
     
@@ -80,36 +80,36 @@ Route::group(['middleware' => 'isLogged'], function(){
     
     // Routes for admin
     
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
-    Route::get('/admin/deconnexion', [AdminAuthController::class, 'logout'])->name('admin.logout');
+    Route::get('/aymen/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/aymen/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('/aymen/deconnexion', [AdminAuthController::class, 'logout'])->name('admin.logout');
     
     /**Commands controller */
     
-    Route::get('/admin/gestion-commands', [CommandsController::class, 'indexAdmin'])->name('admin.commands');
-    Route::get('/admin/command/{id}', [CommandsController::class, 'getCommand']);
-    Route::get('/admin/validate-command/{id}', [CommandsController::class, 'validateCommand']);
-    Route::get('/admin/commande-non-validee', [CommandsController::class, 'getNonValidCommand'])->name('admin.unvalidated-command');
-    Route::get('/admin/commande-validee', [CommandsController::class, 'getValidCommand'])->name('admin.validated-command');
+    Route::get('/aymen/gestion-commands', [CommandsController::class, 'indexAdmin'])->name('admin.commands');
+    Route::get('/aymen/command/{id}', [CommandsController::class, 'getCommand']);
+    Route::get('/aymen/validate-command/{id}', [CommandsController::class, 'validateCommand']);
+    Route::get('/aymen/commande-non-validee', [CommandsController::class, 'getNonValidCommand'])->name('admin.unvalidated-command');
+    Route::get('/aymen/commande-validee', [CommandsController::class, 'getValidCommand'])->name('admin.validated-command');
     Route::get('/mes-commands', [CommandsController::class, 'indexUser'])->name('user.commands');
     Route::get('/command-details/{id}', [CommandsController::class, 'getCommandUser']);
     
     /** Offers controller */
     
-    Route::get('/admin/gestion-offre', [OffersController::class, 'offers'])->name('admin.offers');
-    Route::get('/admin/liste-des-offres', [OffersController::class, 'offerList'])->name('admin.offers-List');
-    Route::get('/admin/ajouter-offre', [OffersController::class, 'add'])->name('admin.add-offer');
-    Route::post('/admin/creation-offre', [OffersController::class, 'create'])->name('admin.offer-create');
-    Route::get('/admin/editer-offre/{id}', [OffersController::class, 'editOffer']);
-    Route::post('/admin/update-offre', [OffersController::class, 'update'])->name('admin.update-offer');
-    Route::get('/admin/confirmation/{id}', [OffersController::class, 'confirm']);
-    Route::post('/admin/supprimer-offre/{id}', [OffersController::class, 'delete']);
+    Route::get('/aymen/gestion-offre', [OffersController::class, 'offers'])->name('admin.offers');
+    Route::get('/aymen/liste-des-offres', [OffersController::class, 'offerList'])->name('admin.offers-List');
+    Route::get('/aymen/ajouter-offre', [OffersController::class, 'add'])->name('admin.add-offer');
+    Route::post('/aymen/creation-offre', [OffersController::class, 'create'])->name('admin.offer-create');
+    Route::get('/aymen/editer-offre/{id}', [OffersController::class, 'editOffer']);
+    Route::post('/aymen/update-offre', [OffersController::class, 'update'])->name('admin.update-offer');
+    Route::get('/aymen/confirmation/{id}', [OffersController::class, 'confirm']);
+    Route::post('/aymen/supprimer-offre/{id}', [OffersController::class, 'delete']);
 
     /** Qrcode Controller */
 
-    Route::get('/admin/qr-code', [QrCodeController::class, 'index'])->name('admin.qr-code');
-    Route::get('/admin/qr-code-list', [QrCodeController::class, 'list'])->name('admin.qr-code-list');
-    Route::get('/admin/qr-code-generate', [QrCodeController::class, 'generate'])->name('admin.qr-code-generate');
+    Route::get('/aymen/qr-code', [QrCodeController::class, 'index'])->name('admin.qr-code');
+    Route::get('/aymen/qr-code-list', [QrCodeController::class, 'list'])->name('admin.qr-code-list');
+    Route::get('/aymen/qr-code-generate', [QrCodeController::class, 'generate'])->name('admin.qr-code-generate');
 
     
 });
@@ -132,7 +132,7 @@ Route::group(['middleware' => 'alreadyLoggedIn'], function(){
 
     // Routes for Admin
     
-    Route::get('/admin/connexion', [AdminAuthController::class, 'login'])->name('admin.login');
+    Route::get('/aymen/connexion', [AdminAuthController::class, 'login'])->name('admin.login');
     
 
 });

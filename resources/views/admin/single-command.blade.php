@@ -62,7 +62,7 @@
                         <h1 class="text-sm mt-3">Prix Unitaire</h1>
                         <span class="block">{{ $command->price }}</span>
                         <button class="py-2 px-8 bg-gray-300 shadow-2xl rounded mt-3">
-                            <a href="/admin/validate-command/{{$command->id}}">
+                            <a href="/aymen/validate-command/{{$command->id}}">
                                 Valider Commande
                             </a>
                         </button>

@@ -66,7 +66,7 @@
                             <hr class="my-4">
                             <div class="flex items-center justify-end">
                                 <button class="bg-red-400 text-gray-100 shadow-2xl rounded px-4 py-2">
-                                    <a href="/admin/command/{{$command->id}}">Voir commande</a>  
+                                    <a href="/aymen/command/{{$command->id}}">Voir commande</a>  
                                 </button>
                             </div>
                         </div>
