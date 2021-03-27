@@ -11,13 +11,16 @@ use App\Models\UserExtraInfo;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Location;
+use App\Models\Poke;
 
 class UserController extends Controller
 {
     function index(){
         $user = User::where('id', '=', session('loggedUserId'))->first();
         $locts = DB::table('locations')->where('profile_id', '=', $user->id)->get();
-        
+        $Pokes = DB::table('pokes')->where('profile_id', '=', $user->id)->get();
+        $totalLocts = count($locts);
+        $totalPokes = count($Pokes);
         $lat = 46.2276;
         $lng = 2.2137;
         $data   =   [
@@ -25,7 +28,9 @@ class UserController extends Controller
             'user'  =>  $user,
             'lat' => $lat,
             'lng' => $lng,
-            'locts' => $locts
+            'locts' => $locts,
+            'totalPokes' =>  $totalPokes,
+            'totalLocts' =>  $totalLocts
 
         ];
 
@@ -40,11 +45,14 @@ class UserController extends Controller
         return view('user.profile', $data);
     }
 
-    function cards(){
+    function notifications(){
+        $loggedUserInfo  =  User::where('id', '=', session('loggedUserId'))->first();
+        $pokes = Poke::where("profile_id", "=", $loggedUserInfo->id)->get();
         $data   =   [
-            'loggedUserInfo'  =>  User::where('id', '=', session('loggedUserId'))->first()
+            'loggedUserInfo'  => $loggedUserInfo,
+            'pokes' => $pokes
         ];
-        return view('user.cards', $data);
+        return view('user.notifications', $data);
     }
     function qrCode(){
 
@@ -55,9 +63,15 @@ class UserController extends Controller
         foreach($qrcodes as $qr){
             if($qr->id == $loggedUserInfo->qrcode_id){
                 $qr_string = $qr->qrcode_string;
+                if(!$qr->isVerified){
+                    $qr_string[2] = '*';
+                    $qr_string[3] = '*';
+                    $qr_string[4] = '*';
+                }
             }
         }
 
+        
         $data   =   [
             'loggedUserInfo'  =>  $loggedUserInfo,
             'qr_string' => $qr_string

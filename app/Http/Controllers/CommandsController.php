@@ -17,7 +17,7 @@ class CommandsController extends Controller
         $loggedUserInfo  =  User::where('id', '=', session('loggedUserId'))->first();
         $commands  =  Command::where('user_id', "=", session('loggedUserId'))->get();
         if($loggedUserInfo){
-            if (isset($commands->id)) {
+            if ($commands) {
                 $data   =   [
                     'commands' => $commands,
                     'loggedUserInfo' => $loggedUserInfo
@@ -95,7 +95,7 @@ class CommandsController extends Controller
 
         $command->save();
 
-        return redirect('/admin/gestion-commands');
+        return redirect('/aymen/gestion-commands');
     }
     function getValidCommand(){
         

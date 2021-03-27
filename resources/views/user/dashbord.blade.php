@@ -28,12 +28,6 @@
                         <span class="capitalize tracking-wider leading-loose">Mes Commandes</span>
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="{{route('user.cards')}}" class="py-2 flex items-center hover:text-indigo-600">
-                        <ion-icon name="id-card" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                        <span class="capitalize tracking-wider leading-loose">Mes Cartes</span>
-                    </a>
-                </li> --}}
                 <li>
                     <a href="{{route('user.qr-code')}}" class="py-2 flex items-center hover:text-indigo-600">
                         <ion-icon name="id-card" class="text-indigo-600 mr-2 text-lg"></ion-icon>
@@ -44,6 +38,12 @@
                     <a href="{{ route('user.reviews')}}" class="py-2 flex items-center hover:text-indigo-600">
                         <ion-icon name="mail-unread" class="text-indigo-600 mr-2 text-lg"></ion-icon>
                         <span class="capitalize tracking-wider leading-loose">Mes Messageries</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('user.notifications')}}" class="py-2 flex items-center hover:text-indigo-600">
+                        <ion-icon name="notifications" class="text-indigo-600 mr-2 text-lg"></ion-icon>
+                        <span class="capitalize tracking-wider leading-loose">Notifications</span>
                     </a>
                 </li>
                 <li>
@@ -143,30 +143,14 @@
                             <div class="p-4 text-center text-sm">
                                 <!-- <ion-icon name="heart" class="text-red-400 text-xl"></ion-icon> -->
                                 <span class="block">Poke</span>
-                                <span class="text-gray-500">155 personne</span>
+                                <span class="text-gray-500">{{$totalPokes}} personne</span>
                             </div>
 
                             <div class="text-center p-4 text-sm">
                                 <span class="block">Pin</span>
-                                <span class="text-gray-500">155 personne</span>
+                                <span class="text-gray-500">{{$totalLocts}} personne</span>
                             </div>
                         </div>
-                        
-                        {{-- <div class="hidden md:flex mt-4">
-                            <button class="px-4 py-2 bg-indigo-600 rounded-lg shadow-xl text-white mt-4 flex items-center mr-4">
-                                <ion-icon name="flash-outline" class="mr-2 text-lg"></ion-icon>
-                                <span>Poke</span>
-                            </button>
-                            <button class="px-4 py-2 bg-gray rounded-lg shadow-xl text-indigo-600 mt-4 flex items-center">
-                                <ion-icon name="locate-outline" class="mr-2 text-xl"></ion-icon>
-                                <span>Pin</span>
-                            </button>
-                            <button id="btn-modal" class="px-4 py-2 bg-gray rounded-lg shadow-xl text-white bg-indigo-600 mt-4 flex items-center">
-                                <ion-icon name="chatbubbles-outline" class="mr-2 text-xl"></ion-icon>
-                                <span>Dis Quelquechose</span>
-                            </button>
-
-                        </div> --}}
 
                     </div>
                     <div class="bg-white rounded-2xl shadow-2xl p-8 mt-8">

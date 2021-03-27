@@ -62,12 +62,26 @@ $("#add-education").click(function () {
                     <option value="1999">1999</option>
                     <option value="2000">2000</option>
                     <option value="2001">2001</option>
+                    <option value="2001">2002</option>
                     <option value="2002">2003</option>
                     <option value="2004">2004</option>
+                    <option value="2004">2005</option>
                     <option value="2005">2006</option>
                     <option value="2005">2007</option>
                     <option value="2005">2008</option>
                     <option value="2005">2009</option>
+                    <option value="2005">2010</option>
+                    <option value="2005">2011</option>
+                    <option value="2005">2012</option>
+                    <option value="2005">2013</option>
+                    <option value="2005">2014</option>
+                    <option value="2005">2015</option>
+                    <option value="2005">2016</option>
+                    <option value="2005">2017</option>
+                    <option value="2005">2018</option>
+                    <option value="2005">2019</option>
+                    <option value="2005">2020</option>
+                    <option value="2005">2021</option>
                   </select>
               </label>
               <label class="block mt-4">

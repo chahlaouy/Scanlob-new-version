@@ -139,6 +139,6 @@ class OffersController extends Controller
             'offers'=> $offer
         ];
         
-        return redirect('/admin/liste-des-offres');
+        return redirect('/aymen/liste-des-offres');
     }
 }

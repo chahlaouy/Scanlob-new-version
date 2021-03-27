@@ -140,7 +140,10 @@ class HomeController extends Controller
 
         /** user not empty */
         if($user){
-
+            $locts = DB::table('locations')->where('profile_id', '=', $user->id)->get();
+            $Pokes = DB::table('pokes')->where('profile_id', '=', $user->id)->get();
+            $totalLocts = count($locts);
+            $totalPokes = count($Pokes);
             /** logged user */
             if(session()->has('loggedUserId')){
 
@@ -148,6 +151,8 @@ class HomeController extends Controller
                 $data = [
                     'user' => $user,
                     'loggedUserInfo'  =>  $loggeduser,
+                    'totalPokes' =>  $totalPokes,
+                    'totalLocts' =>  $totalLocts
                 ];
                 return view('profile', $data);
 
@@ -155,11 +160,13 @@ class HomeController extends Controller
             /** no logged user */
             else{
                 
-                $lat = 46.2276;
-                $lng = 2.2137;
+                // $lat = 46.2276;
+                // $lng = 2.2137;
 
                 $data = [
                     'user' => $user,
+                    'totalPokes' =>  $totalPokes,
+                    'totalLocts' =>  $totalLocts
                 ];
                 return view('profile', $data);
             }

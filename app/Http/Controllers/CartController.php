@@ -108,7 +108,7 @@ class CartController extends Controller
     
             $payment_intent = \Stripe\PaymentIntent::create([
                 'description' => 'Stripe Test Payment',
-                'amount' => $total,
+                'amount' => $total*100,
                 'currency' => 'eur',
                 'description' => 'Payment' . $loggedUserInfo->username,
                 'payment_method_types' => ['card'],
@@ -154,6 +154,8 @@ class CartController extends Controller
 
             \Cart::session($userID)->remove($item->id);
         }
+        session()->pull('cartItems');
+        session()->put('cartItems', 0);
         return view('payment');
 
     }

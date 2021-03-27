@@ -39,7 +39,7 @@ class AdminAuthController extends Controller
                 // redirect to admin dashboard
 
                 $request->session()->put('loggedUserId', $admin->id);
-                return redirect('admin/dashboard');
+                return redirect('aymen/dashboard');
 
             }else{
                 return back()->with('fail', 'Mot de passe erroné');
@@ -54,7 +54,7 @@ class AdminAuthController extends Controller
 
         if(session()->has('loggedUserId')){
             session()->pull('loggedUserId');
-            return redirect('admin/connexion');
+            return redirect('aymen/connexion');
         }
     }
 }

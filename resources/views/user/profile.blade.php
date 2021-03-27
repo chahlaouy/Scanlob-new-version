@@ -28,12 +28,7 @@
                     <span class="capitalize tracking-wider leading-loose">Mes Commandes</span>
                 </a>
             </li>
-            {{-- <li>
-                <a href="{{route('user.cards')}}" class="py-2 flex items-center hover:text-indigo-600">
-                    <ion-icon name="id-card" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Mes Cartes</span>
-                </a>
-            </li> --}}
+            
             <li>
                 <a href="{{route('user.qr-code')}}" class="py-2 flex items-center hover:text-indigo-600">
                     <ion-icon name="id-card" class="text-indigo-600 mr-2 text-lg"></ion-icon>
@@ -44,6 +39,12 @@
                 <a href="{{ route('user.reviews')}}" class="py-2 flex items-center hover:text-indigo-600">
                     <ion-icon name="mail-unread" class="text-indigo-600 mr-2 text-lg"></ion-icon>
                     <span class="capitalize tracking-wider leading-loose">Mes Messageries</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('user.notifications')}}" class="py-2 flex items-center hover:text-indigo-600">
+                    <ion-icon name="notifications" class="text-indigo-600 mr-2 text-lg"></ion-icon>
+                    <span class="capitalize tracking-wider leading-loose">Notifications</span>
                 </a>
             </li>
             <li>
@@ -75,11 +76,7 @@
                 <div class="bg-white rounded-2xl shadow-2xl w-full md:w-96 md:mr-6 h-auto">
                     <div class="flex p-4 relative z-0">
                         <img src="{{asset('assets/images/profile.png')}}" class="h-96 w-full rounded-2xl object-cover" alt="">
-                        {{-- <div class="absolute bottom-0 right-0 z-10 w-24 h-24 rounded-full bg-indigo-600 flex items-center justify-center">
-                            <div class="text-6xl font-bold text-gray-100">
-                                <input type="file" id="img" name="img" accept="image/*">
-                            </div>
-                        </div> --}}
+                        
                         <div class="absolute bottom-0 right-0 z-10 w-24 h-24 rounded-full bg-indigo-600 flex items-center justify-center">
 
                             <input type="file" class="custom-file-input" name="image" accept="file/*">
@@ -173,6 +170,7 @@
                                 <label class="block mt-4">
                                     <span class="text-gray-700">L'année</span>
                                     <select class="form-select my-4 block w-full py-2 border-2 border-gray-300 rounded focus:outline-indigo-600" name="addmore[0][year]">
+                                        <option value="">Choisissez l'année</option>
                                         @for ($i = 1990; $i < 2022; $i++)
                                             <option value="{{$i}}">{{$i}}</option>
                                         @endfor

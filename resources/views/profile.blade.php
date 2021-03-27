@@ -181,12 +181,12 @@
                             <div class="p-4 text-center text-sm">
                                 <!-- <ion-icon name="heart" class="text-red-400 text-xl"></ion-icon> -->
                                 <span class="block">Poke</span>
-                                <span class="text-gray-500">155 personne</span>
+                                <span class="text-gray-500">{{$totalPokes}} personne</span>
                             </div>
     
                             <div class="text-center p-4 text-sm">
                                 <span class="block">Pin</span>
-                                <span class="text-gray-500">155 personne</span>
+                                <span class="text-gray-500">{{$totalLocts}} personne</span>
                             </div>
                         </div>
                         <div class="w-full py-2 bg-green-400 rounded-xl text-center text-gray-700" id="successPoke"></div>

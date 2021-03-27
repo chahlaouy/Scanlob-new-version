@@ -31,12 +31,6 @@
                     <span class="capitalize tracking-wider leading-loose">Mes Commandes</span>
                 </a>
             </li>
-            {{-- <li>
-                <a href="{{route('user.cards')}}" class="py-2 flex items-center hover:text-indigo-600">
-                    <ion-icon name="id-card" class="text-indigo-600 mr-2 text-lg"></ion-icon>
-                    <span class="capitalize tracking-wider leading-loose">Mes Cartes</span>
-                </a>
-            </li> --}}
             <li>
                 <a href="{{route('user.qr-code')}}" class="py-2 flex items-center hover:text-indigo-600">
                     <ion-icon name="id-card" class="text-indigo-600 mr-2 text-lg"></ion-icon>
@@ -47,6 +41,12 @@
                 <a href="{{ route('user.reviews')}}" class="py-2 flex items-center text-indigo-600">
                     <ion-icon name="mail-unread" class="text-indigo-600 mr-2 text-lg"></ion-icon>
                     <span class="capitalize tracking-wider leading-loose">Mes Avis</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('user.notifications')}}" class="py-2 flex items-center hover:text-indigo-600">
+                    <ion-icon name="notifications" class="text-indigo-600 mr-2 text-lg"></ion-icon>
+                    <span class="capitalize tracking-wider leading-loose">Notifications</span>
                 </a>
             </li>
             <li>

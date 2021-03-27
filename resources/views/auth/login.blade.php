@@ -37,7 +37,7 @@
                     <span class="text-red-400">
                         @error('email')
                             {{$message}}
-                        @enderror
+                        @enderror 
                     </span>
                     <input type="password" class="w-full px-4 py-2 my-4 bg-red-200 rounded outline-white" placeholder="Mot de passe" name="password">
                     <span class="text-red-400">
@@ -51,6 +51,19 @@
                             Creér une nouvelle compte
                         </a>
                         <a class="block my-3" href="{{route('user.get-email')}}">Réinitialiser le mot de passe</a>
+                    </div>
+                    <h1 class="text-center mt-8">Ou Connectez avec</h1>
+                    <div class="flex items-center justify-around mt-4">
+                        <div class="flex justify-center items-center w-10 h-10 bg-indigo-600 shadow-2xl rounded-full">
+                            <a href="{{ route('login.facebook') }}" class="flex justify-center items-center">
+                                <ion-icon name="logo-facebook" class="text-3xl text-gray-100"></ion-icon>
+                            </a>
+                        </div>
+                        <div class="flex justify-center items-center w-10 h-10 bg-red-500 shadow-2xl rounded-full">
+                            <a href="{{ route('login.google') }}" class="flex justify-center items-center">
+                                <ion-icon name="logo-google" class="text-3xl text-gray-100"></ion-icon>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </form>

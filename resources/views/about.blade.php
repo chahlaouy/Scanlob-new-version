@@ -13,24 +13,37 @@
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 </head>
 <body> 
-    <section class="md:h-screen w-full bg-indigo-600 flex items-center justify-center p-8">
-        <div class="w-full bg-white rounded-2xl shadow-2xl p-12 leading-loose tracking-wide text-gray-700 bg-about">
+    <section class=" w-full bg-indigo-600 flex items-center justify-center p-1 md:p-8">
+        <div class="w-full bg-white rounded-2xl shadow-2xl p-2 md:p-12 leading-loose tracking-wide text-gray-700 bg-about">
             <div class="flex items-center">
                 <div class="flex-1">
                     <h1 class="text-7xl text-gray-800">Apropos Scanlob</h1>
-                    <p class="text-sm tracking-wide leading-loose text-gray-600 my-8 max-w-lg">Créé en 2019, établie au Mans, est spécialisé dans le développement de produits innovants dans l’industrie automobile.</p>
+                    <p class="text-sm tracking-wide leading-loose text-gray-600 my-2 max-w-lg">Scanlob est créee la Société GLOBLEU par SASU (ci-après dénommée GLOBLEU ou la
+                        Société) au capital de 1000 euros, immatriculée au RCS de Versailles ,
+                        ayant son siège 2 Rue Eugène Pottier,
+                    </p>
+                    <p class="text-sm tracking-wide leading-loose text-gray-600 my-2 max-w-lg">78190, Trappes, propose sur son site internet un
+                        service de communication entre deux Utilisateurs (un Client et un Répondant), ainsi que desCodes (généralement fixés sur des supports) permettant d'anonymiser les Utilisateurs. 
+                        condition.
+                    </p>
+                    <p class="text-sm tracking-wide leading-loose text-gray-600 my-2 max-w-lg">La
+                        vente de ces objets et services sur le siteScanlib.com est régie par les présentes conditions
+                        générales de vente (ci-après dénommées les CGV), à l’exclusion de tout autre document ou
+                        condition.
+                    </p>
                 </div>
                 <div class="flex-1"></div>
 
             </div>
-            <div class="md:flex md:items-center md:justify-around mt-8 md:mt-32">
+            <div class="md:flex md:items-center md:justify-around mt-2 md:mt-32">
 
                 <div class="flex items-center justify-center bg-gray-200 rounded-xl shadow-2xl text-center w-64 p-4 my-4 md:my-0">
 
                     <div class="">
-                        <ion-icon name="aperture-outline" class="text-5xl text-purple-600"></ion-icon>
+                        <ion-icon name="car" class="text-5xl text-purple-600"></ion-icon>
                         <p class="text-sm tracking-wide leading-loose text-gray-600 my-3">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quasi aspernatur blanditiise?
+                            Livraison en 24H  
+                            Profiter de notre offre de livraison rapide
                         </p>
                     </div>
 
@@ -41,7 +54,8 @@
                     <div class="">
                         <ion-icon name="bag-handle-outline" class="text-5xl text-purple-600"></ion-icon>
                         <p class="text-sm tracking-wide leading-loose text-gray-600 my-3">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quasi aspernatur blanditiise?
+                            Payement en ligne
+                            Plateforme sécurisée et garantie 
                         </p>
                     </div>
 
@@ -52,7 +66,8 @@
                     <div class="">
                         <ion-icon name="browsers-outline" class="text-5xl text-purple-600"></ion-icon>
                         <p class="text-sm tracking-wide leading-loose text-gray-600 my-3">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quasi aspernatur blanditiise?
+                            Services et vente de poduits 
+                            Tous les services liés à notre produit sont totalement gratuits
                         </p>
                     </div>
 

@@ -23,7 +23,9 @@
             Vous pouvez partager votre expérience dès le 1er jour 
             Commander maintenant ! </p>
         <button class="mt-12 bg-indigo-600 px-4 py-2 rounded-lg text-gray-100">
-            En savoir plus
+            <a href="{{route('about')}}">
+                En savoir plus
+            </a>
         </button>
         <div class="flex items-center text-red-400 mt-24 text-xl">
             <ion-icon name="logo-facebook" class="mr-4"></ion-icon>

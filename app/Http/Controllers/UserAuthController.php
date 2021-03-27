@@ -148,7 +148,7 @@ class UserAuthController extends Controller
 
         if(session()->has('loggedUserId')){
             session()->pull('loggedUserId');
-            return redirect('connexion');
+            return redirect('/');
             session()->pull('cartItems');
         }
     }
