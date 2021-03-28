@@ -55,7 +55,7 @@
         </ul>
     </div>  
     <div class="bg-gray-800 bg-opacity-50 rounded-3xl p-1 md:p-12 w-full">
-        @if (isset($commands))
+        @if (isset($commands) && count($commands)>0)
         <div class="w-full">
             @foreach ($commands as $command)           
                 <div class="mt-5 w-full">

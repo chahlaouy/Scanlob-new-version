@@ -37,6 +37,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{route('admin.message')}}" class="py-2 flex items-center hover:text-indigo-600">
+                    <ion-icon name="mail" class="text-indigo-600 mr-2 text-lg"></ion-icon>
+                    <span class="capitalize tracking-wider leading-loose">Boite de récéption</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.logout')}}" class="py-2 flex items-center hover:text-indigo-600">
                     <ion-icon name="log-out" class="text-indigo-600 mr-2 text-lg"></ion-icon>
                     <span class="capitalize tracking-wider leading-loose">Déconnexion</span>
@@ -61,11 +67,13 @@
                         <span>{{ $command->quantity }}</span>
                         <h1 class="text-sm mt-3">Prix Unitaire</h1>
                         <span class="block">{{ $command->price }}</span>
-                        <button class="py-2 px-8 bg-gray-300 shadow-2xl rounded mt-3">
-                            <a href="/aymen/validate-command/{{$command->id}}">
-                                Valider Commande
-                            </a>
-                        </button>
+                        @if (!$command->isValidated)    
+                            <button class="py-2 px-8 bg-gray-300 shadow-2xl rounded mt-3">
+                                <a href="/aymen/validate-command/{{$command->id}}">
+                                    Valider Commande
+                                </a>
+                            </button>
+                        @endif
                     </div>
                     {{-- <div class="flex mr-8 w-32">
                         <img src="{{asset('assets/images/profile.png')}}" class="w-32 rounded-2xl object-cover shadow-2xl" alt=""> 

@@ -54,7 +54,7 @@ class AdminAuthController extends Controller
 
         if(session()->has('loggedUserId')){
             session()->pull('loggedUserId');
-            return redirect('aymen/connexion');
+            return redirect('/');
         }
     }
 }

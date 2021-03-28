@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.commands')}}" class="py-2 flex items-center text-indigo-600">
+                <a href="{{route('admin.commands')}}" class="py-2 flex items-center hover:text-indigo-600">
                     <ion-icon name="card" class="text-indigo-600 mr-2 text-lg"></ion-icon>
                     <span class="capitalize tracking-wider leading-loose">Gestion Commandes</span>
                 </a>
@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.message')}}" class="py-2 flex items-center hover:text-indigo-600">
+                <a href="{{route('admin.message')}}" class="py-2 flex items-center text-indigo-600">
                     <ion-icon name="mail" class="text-indigo-600 mr-2 text-lg"></ion-icon>
                     <span class="capitalize tracking-wider leading-loose">Boite de récéption</span>
                 </a>
@@ -48,9 +48,9 @@
         </ul>
     </div>  
     <div class="bg-gray-800 bg-opacity-50 rounded-3xl p-12 w-full">
-        @if (isset($commands))
+        @if (isset($messages) && count($messages)>0)
         <div class="w-full">
-            @foreach ($commands as $command)           
+            @foreach ($messages as $message)           
                 <div class="mt-5 w-full">
                     <div class="p-4 bg-white shadow-2xl flex rounded-2xl w-full">
                         <div class="flex mr-8 w-32">
@@ -60,19 +60,19 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <h1 class="text-2xl text-gray-800">
-                                        {{$command->product}}
+                                        {{$message->username}}
                                     </h1>
-                                    <span class="text-sm block text-gray-600">Quantité:</span>
-                                    <span class="text-xl block text-indigo-700">{{$command->quantity}}</span>
+                                    <span class="text-sm block text-gray-600">Téléphone:</span>
+                                    <span class="text-xl block text-indigo-700">{{$message->phone}}</span>
                                 </div>
-                                <div class="text-3xl">
+                                {{-- <div class="text-3xl">
                                     {{$command->price}}€
-                                </div>
+                                </div> --}}
                             </div>
                             <hr class="my-4">
                             <div class="flex items-center justify-end">
-                                <button class="bg-red-400 text-gray-100 shadow-2xl rounded px-4 py-2">
-                                    <a href="/aymen/command/{{$command->id}}">Voir commande</a>  
+                                <button class="bg-indigo-600 text-gray-100 shadow-2xl rounded px-4 py-2">
+                                    <a href="/aymen/single-message/{{$message->id}}">Voir Message</a>  
                                 </button>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
         </div>
             
         @else
-            <h1 class="text-gray-700 text-4xl">Sorry No Cart is empty</h1>
+            <h1 class="text-gray-700 text-4xl">Vous avez aucune message</h1>
         @endif
     </div>
      

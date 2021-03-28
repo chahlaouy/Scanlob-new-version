@@ -9,6 +9,7 @@ use App\Models\Offers;
 use App\Models\Qrcode;
 use App\Models\Location;
 use App\Models\Poke;
+use App\Models\Contact;
 
 use Illuminate\Support\Facades\DB;
 
@@ -185,7 +186,30 @@ class HomeController extends Controller
     }
     function contact(){
 
-        return view('contact');
+        return view('contact'); 
+    }
+    function contactSend(Request $request){ 
+
+        $request->validate([
+            'username' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'message' => 'required',
+        ]);
+        
+        $contact = new Contact();
+
+        $contact->username = $request->username;
+        $contact->lastname = $request->lastname;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->message = $request->message;
+        $contact->isViewed = false;
+
+        $contact->save();
+
+        return back()->with('success', 'Votre message a été bien envoyer'); 
     }
     function about(){
 

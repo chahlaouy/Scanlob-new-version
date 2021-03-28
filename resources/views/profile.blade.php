@@ -372,7 +372,7 @@
                         if (place.geometry.viewport) {
                             // Only geocodes have viewport.
                             window.pinLat = place.geometry.location.lat()
-                            window.pinLng = place.geometry.location.lat()
+                            window.pinLng = place.geometry.location.lng()
                             console.log(window.pinLat, window.pinLng)
                             bounds.union(place.geometry.viewport);
                         } else {
@@ -398,10 +398,10 @@
                     console.log(pos)
     
                     /*  send ajax request to back end here*/
-                    if (pos.lat){
-                        window.pinLat = pos.lat
-                        window.pinLng = pos.lng
-                    }
+                    // if (pos.lat){
+                    //     window.pinLat = pos.lat
+                    //     window.pinLng = pos.lng
+                    // }
                     if(!window.pinLat && !window.pinLng){
                         const fail = document.getElementById("fail");
                         fail.style.display = "block";
@@ -441,6 +441,7 @@
                                             success.style.display = "none";
                                         }, 2000);
                                     }
+                                    console.log(data)
                                 })
                                 .fail((data) => {
                                     const fail = document.getElementById("fail");

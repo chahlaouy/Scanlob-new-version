@@ -12,13 +12,18 @@
     <title>Nos offres</title>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 </head>
-<body>
+<body> 
     
     <section class="h-screen w-full bg-indigo-600 flex items-center justify-center">
         <div class="max-w-2xl bg-white rounded-2xl shadow-2xl p-4 md:p-12 leading-loose tracking-wide">
-            <form action="" method="post">
+            <form action="{{route('contact.send')}}" method="post">
                 @csrf
                 <h1 class="uppercase text-xl text-center ">contactez-nous</h1>
+                @if (Session::get('success'))
+                    <div class="py-2 text-center px-2 bg-green-400 text-gray-700">
+                        {{Session::get('success')}}
+                    </div>
+                @endif
                 <div class="flex items-center">
                     <div class="w-full md:w-96 p-4">
                         <label class="block mt-4">

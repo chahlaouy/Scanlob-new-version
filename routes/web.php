@@ -33,9 +33,12 @@ Route::get('/nos-carte', [HomeController::class, 'getCart'])->name('visit-cards'
 Route::get('/nos-accessoire', [HomeController::class, 'getAccessoire'])->name('accessoire');
 Route::get('/offre/{id}', [HomeController::class, 'getOffer']);
 Route::get('/search', [HomeController::class, 'search'])->name('search');
-Route::get('/profile/{id}', [HomeController::class, 'getProfile'])->name('profile');
+Route::get('/profile/{id}', [HomeController::class, 'getProfile'])->name('profile'); 
 Route::get('/apropos', [HomeController::class, 'about'])->name('about');
+/** Contact */
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::post('/contact', [HomeController::class, 'contactSend'])->name('contact.send');
+/** termes et conditions */
 Route::get('/term', [HomeController::class, 'term'])->name('term');
 
 /** google login */
@@ -83,6 +86,14 @@ Route::group(['middleware' => 'isLogged'], function(){
     Route::get('/aymen/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/aymen/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::get('/aymen/deconnexion', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+    /** Inbox */
+
+    Route::get('/aymen/messages', [AdminController::class, 'message'])->name('admin.message'); 
+    Route::get('/aymen/messages-lue', [AdminController::class, 'messageLue'])->name('admin.message-lue'); 
+    Route::get('/aymen/messages-non-lue', [AdminController::class, 'messageNonLue'])->name('admin.message-non-lue');
+    Route::get('/aymen/single-message/{id}', [AdminController::class, 'getMessage']);
+    Route::get('/aymen/message/{id}', [AdminController::class, 'validateMessage']);
     
     /**Commands controller */
     
