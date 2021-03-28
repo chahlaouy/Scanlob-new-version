@@ -87,4 +87,11 @@ class AdminController extends Controller
 
         return redirect('/aymen/messages-non-lue');
     }
+    function destroyMessage($id){
+
+        $message = Contact::where('id', '=', $id)->first();
+        $message->delete();
+
+        return redirect('/aymen/messages-non-lue');
+    }
 }

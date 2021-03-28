@@ -94,6 +94,7 @@ Route::group(['middleware' => 'isLogged'], function(){
     Route::get('/aymen/messages-non-lue', [AdminController::class, 'messageNonLue'])->name('admin.message-non-lue');
     Route::get('/aymen/single-message/{id}', [AdminController::class, 'getMessage']);
     Route::get('/aymen/message/{id}', [AdminController::class, 'validateMessage']);
+    Route::get('/aymen/delete-message/{id}', [AdminController::class, 'destroyMessage']);
     
     /**Commands controller */
     

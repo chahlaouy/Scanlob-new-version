@@ -14,10 +14,10 @@
     <div id="mapModel" class="mapModal">
 
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="modal-content p-4">
             <span class="mapclose">&times;</span>
             <div class="w-full p-4">
-                <div class="bg-white rounded-2xl shadow-2xl p-8 mt-8">
+                <div class="bg-white rounded-2xl shadow-2xl p-2 md:p-8 mt-8">
                     <div class="w-full py-2 bg-green-400 rounded-xl text-center text-gray-700" id="success"></div>
                     <div class="w-full py-2 bg-red-400 rounded-xl text-center text-gray-700" id="fail"></div>
                     <h1 class="tracking-wide leading-loose capitalize tex-3xl">Addresse</h1>
@@ -30,7 +30,7 @@
                     type="text"
                     placeholder="Entrer Votre addresse"
                     />
-                    <div id="map" class="w-full h-96"></div>
+                    <div id="map" class="w-full h-56 md:h-96"></div>
                 </div>
                 <button id="submitPin" class="w-full py-2 text-gray-100 bg-indigo-600 mt-4 rounded-xl">Pin</button>
             </div>
